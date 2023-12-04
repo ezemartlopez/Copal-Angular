@@ -1,0 +1,164 @@
+.container-card{
+    width: 365px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3px;
+}
+
+.image-evento{
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+    height: 120px;
+    object-fit: fill;
+}
+.container-description-event{
+    height: 200px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.container-state{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-zone{
+    width: 300px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.state-zone{
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.state-event{
+    width: auto;
+    height: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    border-radius: 3px;
+}
+
+.container-actions{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-options{
+    width: 190PX;
+    height: 50PX;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.icon-option{
+    width: 40px;
+    height: 40px;
+    background-color: #67b4c0;
+    color: white;
+    border-radius: 50%;
+    object-fit: scale-down;
+}
+.text-tittle{
+    font-size: 21px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.text-informacion{
+    font-size: 18px;
+}
+.text-resalt{
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.comenzado{
+    background-color: #04c39a;
+    color: white;
+}
+.sin-comenzar{
+    background-color: #a4ccf4;
+    color: white;
+}
+.finalizado{
+    background-color: #8a8d90;
+    color: white; 
+}
+.suspendido{
+    background-color: #ffdc6a;
+    color: white;
+}
+.cancelado{
+    background-color: #df6a74;
+    color: white;
+}
+.custom-icon{
+    width: auto;
+    padding-right: 5px;
+    box-sizing: border-box;
+    align-self: center;
+}
+.div-over{
+    overflow: hidden;
+}
+.edit-error{
+    background-color:rgba(255, 0, 0, 0.5);
+}
+.edit-success{
+    background: rgba(0, 128, 0, 0.3);
+}
+/*animaciones*/
+.succes-edit {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background: linear-gradient(to top, rgba(0, 255, 0, 0.5), transparent);
+    animation: colorChange 0.5s linear 1;
+}
+.error-edit {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background: linear-gradient(to top, rgba(229, 15, 15, 0.5),transparent);
+    animation: colorChangeError 0.5s linear 1;
+}
+@keyframes colorChange {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 700px;
+    }
+}
+@keyframes colorChangeError {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 700px;
+    }
+}

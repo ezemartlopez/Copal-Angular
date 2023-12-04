@@ -1,0 +1,143 @@
+.conteiner-cards{
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(3,32%);
+}
+.conteiner-cards .card{
+    margin-bottom: 50px;
+    height: 370px;
+    width: 300px;
+}
+.conteiner-cards .card .card-header{
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+    margin-top: 15px;
+    align-items: center;
+}
+.conteiner-cards .card .card-header h2{
+    color: black;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.conteiner-cards .card .card-descripcion{
+    display: grid;
+    grid-template-columns: repeat(1,90%);
+    justify-content: space-between;
+    height: 150px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.conteiner-cards .card .card-descripcion .fecha{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    width: 300px;
+}
+.conteiner-cards .card .card-descripcion .fecha img{
+    width: 25px;
+    height: 25px;
+}
+.conteiner-cards .card .card-descripcion .hora{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+}
+.conteiner-cards .card .card-descripcion .hora img{
+    width: 25px;
+    height: 25px;
+}
+.conteiner-cards .card .card-descripcion .personaCargo{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+}
+.conteiner-cards .card .card-descripcion .personaCargo img{
+    width: 25px;
+    height: 25px;
+}
+.conteiner-cards .card .card-descripcion p{
+   padding-top: 5px;
+   padding-left: 10px;
+}
+#fecha{
+    width: 380px;
+    padding-top: 0;
+}
+
+.conteiner-cards .card .card-footer{
+    height: 50px;
+    display: grid;
+    grid-template-columns: repeat(1,90%);
+}
+.estado{
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+    margin-top: 10px;
+    
+}
+.estado-var{
+    width: 80%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 35px;
+    text-align: center;
+}
+.estado-var p {
+    margin-top: 5px;
+}
+
+.estado-aceptado {
+    background-color: #04C39A;
+    color: white;
+}
+
+.estado-pendiente {
+    background-color: #C39904;
+    color: white;
+}
+
+.estado-rechazado {
+    background-color: #FF0000;
+    color: white;
+}
+.estado-cancelado {
+    background-color: #6d7271; /* El color que desees para el estado cancelado */
+    color: white;
+  }
+  
+.estado-aceptado-parcial {
+    background-color: #04C39A; /* El color que desees para el estado aceptado parcial */
+    color: white;
+}
+  
+.estado-desconocido {
+    background-color: #67B4C0; /* El color que desees para cualquier otro estado desconocido */
+    color: white;
+}
+  
+.footerIconos{
+    display: grid;
+    grid-template-columns: repeat(3,20%);
+    justify-content: center;
+    margin-left: 30px;
+}
+.footerIconos img{
+    margin-top: 15px;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+.icon-option{
+    background-color: #67B4C0;
+}
+.card {
+    position: center; /* Ajusta según sea necesario */
+}
+  

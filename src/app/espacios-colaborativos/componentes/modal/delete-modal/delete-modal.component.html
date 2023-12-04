@@ -1,0 +1,22 @@
+<div *ngIf="showModalDelete" class="modal-overlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>Eliminar Reserva</h2>
+            <div class="estado-var" [ngClass]="getClasePorEstado(infoReservas.estadoActual.estado.id)" >{{infoReservas.estadoActual.estado.nombre}}</div>
+          </div>
+      
+          <!-- Body del Modal -->
+          <div class="modal-body">
+            <p>Reserva #{{infoReservas.id}}</p>
+            <p>Responsable: {{ infoReservas.responsable.nombreCompleto }}</p>
+            <p>Fecha reserva: {{fechaFormateada}}</p>
+            <p>Hora reserva: {{ infoReservas.horaInicio.substring(0,5)}}-{{infoReservas.horaFin.substring(0,5)}}</p>
+            <p>Correo electrónico: {{ infoReservas.responsable.mail }}</p>
+            <p>Espacio: {{ infoReservas.espacioFisico.nombre }}</p>
+          </div>
+          <div class="footer">
+            <button type="button" class="btnAgregar"  (click)="eliminarReserva()">ELIMINAR</button>
+            <button type="button" class="btnCancelar" (click)="cerrarModal()">CANCELAR</button>
+          </div>
+    </div>
+</div>

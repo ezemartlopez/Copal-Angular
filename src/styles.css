@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Montserrat";
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.elemento_paginacion {
+  @apply font-Monserrat text-dark-blue py-4 h-2 w-3 px-3;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container-buttons{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn-copal{
+  background-color: white;
+  color: #67b4c0;
+  border: 1px solid #67b4c0;
+}
+.btn-copal:hover{
+  background-color: #67b4c0;
+  color: white;
+}
+.btn-copal-d{
+  background-color:#67b4c0;
+  color: white;
+  
+}
+.btn-copal-d:hover{
+  background-color: white;
+  color: #67b4c0;
+  border: 1px solid #67b4c0;
+}

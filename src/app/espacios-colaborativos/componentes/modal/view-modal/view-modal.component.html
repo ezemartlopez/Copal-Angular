@@ -1,0 +1,22 @@
+<div *ngIf="showModal" class="modal-overlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>Detalle Reserva</h2>
+            <div class="estado-var" [ngClass]="getClasePorEstado(infoReservas.estadoActual.estado.id)" >{{infoReservas.estadoActual.estado.nombre}}</div>
+            <button (click)="cerrarModal()">X</button>
+          </div>
+      
+          <!-- Body del Modal -->
+          <div class="modal-body">
+            <p>Reserva #{{infoReservas.id}}</p>
+            <p>Responsable: {{ infoReservas.responsable.nombreCompleto }}</p>
+            <p>Fecha reserva: {{ fechaFormateada }}</p>
+            <p>Hora reserva: {{ infoReservas.horaInicio.substring(0,5)}}-{{infoReservas.horaFin.substring(0,5)}}</p>
+            <p>Correo electrónico: {{ infoReservas.responsable.mail }}</p>
+            <p>Espacio: {{ infoReservas.espacioFisico.nombre }}</p>
+            <p>Recursos: {{ infoReservas.recursosSolicitados.nombre }}</p>
+            <p>Descripción adicional: {{ infoReservas.descripcion }}</p>
+            <p>Observaciones:  </p>
+          </div>
+    </div>
+</div>

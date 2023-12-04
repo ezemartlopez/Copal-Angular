@@ -1,0 +1,52 @@
+<div class="w3-card-2">
+    <div class="card-container-dep">
+        <div class="card-image-dep">
+            <img [src]="data.urlIcono.urlPublica" alt="imagen_departamento" class="image-logo-dep">
+        </div>
+        <div class="card-body-dep">
+            <div class="container-title-dep">
+                <h4 class="title-body-dep">{{data.nombreDeDepartamento}}</h4>    
+            </div>
+            <div class="container-text-dep">
+                <p class="text-body-dep">{{data.descripcion}}</p>
+            </div>
+            <div class="container-button-dep">
+            <!--<button class="btn button-body-dep">MAS INFO | -> </button> -->
+            <div class="container-actions">
+                <img src="assets/logos/view.png" (click)="verDepartamento()" alt="logo-ver">
+                <img src="assets/logos/edit.png" (click)="editarDepartamento()" alt="logo-edit">
+                <img src="assets/logos/trash.png" alt="log-trash" type="button" data-bs-toggle="modal" [attr.data-bs-target]="'#' + identificador">
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    <!--<app-modal-info *ngIf="eliminar" [mensaje]="mostrarMensaje()" titulo="Eliminar SubDepartamento"></app-modal-info>-->
+    <div>
+        <div class="modal fade" [id]="identificador" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel"> Eliminar Departamento</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div *ngIf="!respuesta">
+                        <p class="text-center">Esta seguro de eliminar a <strong>{{data.nombreDeDepartamento}}</strong></p>
+                    </div>
+                    
+                    <div *ngIf="respuesta" class="contenedor-response">
+                        <img [src]="respuesta.logo" alt="logo exito" class="img-response">
+                        <p>{{respuesta.message + data.nombreDeDepartamento}}</p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-cerrar" data-bs-dismiss="modal" (click)="modalCerrar()">Cerrar</button>
+                  <button *ngIf="!departamentoEliminado" type="button" class="btn btn-delete" (click)="eliminarSubDepartamento()">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

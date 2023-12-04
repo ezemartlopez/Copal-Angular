@@ -1,0 +1,121 @@
+<div class="relative max-w-[1126px] mx-auto">
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb ml-2 mb-0">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active"><a href="/departamentos">Gestion de departamentos</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Editar Grupo</li>
+        </ol>
+      </nav>
+    <div>
+        <h1 class="header-title-page">
+          Gestion de Departamentos
+        </h1>
+    </div>
+    <button type="button" class="btn btn-copal mt-3" onclick="retroceder()">Regresar</button>
+</div> 
+<div class="relative max-w-[1126px] mx-auto">
+    <p class="header-title mt-3">Datos de Grupo Departamento</p>
+
+    <div class="container-box mt-3">
+        <div class="row mb-3">
+            <!--Seleccion del espacio-->
+            <div class="col-12">
+                <div class="input-group custom-group mb-1">
+                    <label class="input-group-text custom-label">* Nombre: </label>
+                    <input type="text" class="form-control custom-input" [(ngModel)]="formulario.campos['nombreDeDepartamento'].valorInicial" (blur)="formulario.campos['nombreDeDepartamento'].fieldTouched()">                   
+                </div>
+                <div *ngIf="formulario.tieneErrores('nombreDeDepartamento')" class="alert alert-danger" role="alert">
+                    {{formulario.validarCampos()['nombreDeDepartamento']}}
+                </div>  
+            </div>
+        </div>
+        <div class="row mb-3">
+            <!--Seleccion del espacio-->
+            <div class="col-12">
+                <div class="input-group custom-group mb-1">
+                    <label class="input-group-text custom-label">* Descripción: </label>
+                    <input type="text" class="form-control custom-input" [(ngModel)]="formulario.campos['descripcion'].valorInicial" (blur)="formulario.campos['descripcion'].fieldTouched()">                   
+                </div>
+                <div *ngIf="formulario.tieneErrores('descripcion')" class="alert alert-danger" role="alert">
+                    {{formulario.validarCampos()['descripcion']}}
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    <p class="header-title mt-3">Datos de las Autoridades</p>
+    <div class="users-add-dep">
+        <ul>
+            <li class="mb-2" *ngFor="let autoridad of listaAutoridades">
+                <div class="row-li-users">
+                    <span><strong>Usuario: </strong>{{buscarUsuarioPorId(autoridad.usuarioId)}}</span>
+                    <span><strong>Rol Asignado: </strong>{{buscarRolPorId(autoridad.rolId)}}</span>
+                    <span class="material-icons" type="button" (click)="eliminarAutoridadLista(autoridad.usuarioId, autoridad.rolId, autoridad.id)">cancel</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <hr>
+    <div class="container-box mt-3">
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="input-group custom-group mb-1">
+                    <label class="input-group-text custom-label">* Usuario: </label>
+                    <select class="form-select custom-select" [(ngModel)]="autoridades.campos['usuarioId'].valorInicial" (blur)="autoridades.campos['usuarioId'].fieldTouched()">
+                        <option selected value="0" disabled>NINGUNO</option>
+                        <option *ngFor="let user of usuarios" [value]="user.id">{{user.nombre}}</option>
+                    </select>                    
+                </div>
+                <div *ngIf="autoridades.tieneErrores('usuarioId')" class="alert alert-danger" role="alert">
+                    {{autoridades.validarCampos()['usuarioId']}}
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="input-group custom-group mb-1">
+                    <label class="input-group-text custom-label">* Tipo Rol:</label>
+                    <select class="form-select custom-select" [(ngModel)]="autoridades.campos['rolId'].valorInicial" (blur)="autoridades.campos['rolId'].fieldTouched()">
+                        <option *ngFor="let rol of roles; let i = index" [value]="rol.id" [disabled]="i===0">{{rol.rol}}</option>
+                    </select>                    
+                </div>
+                <div *ngIf="autoridades.tieneErrores('rolId')" class="alert alert-danger" role="alert">
+                    {{autoridades.validarCampos()['rolId']}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-copal btn-content" style="width: 300px;" (click)="agregarAutoridad()">
+        <i class="material-icons">add_circle_outline</i><span>AGREGAR AUTORIDAD</span>
+    </button>
+    <div class="container-box container-buttons mt-3">
+        <button type="button" class="btn btn-copal" onclick="retroceder()">CANCELAR</button>
+        <button type="button" class="btn btn-copal-active" (click)="enviarFormularioGrupo()">EDITAR GRUPO</button>
+    </div>
+</div> 
+
+<div *ngIf="showModal" class="modal fade centered-modal" tabindex="-1" aria-labelledby="exampleModalLabel" [ngClass]="{ 'show visibleModal': showModal }">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-bold size-text-23 font-Monserrat" id="exampleModalLabel">Solicitud Para Editar Grupo</h1>
+          <button type="button" class="btn-close-copal" (click)="ocultarModal()" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body center-info">
+          <div *ngIf="exitoEnvio" class="center-body">
+              <div class="centered">
+                 <img src="/assets/logos/exito.png" alt="logo_exito" class="icono_exito">  
+              </div>
+              <p class="text-message">Se ha editado el Grupo con exito.</p>
+          </div>
+          <div *ngIf="fallaEnvio" class="center-body">
+            <div class="centered">
+               <img src="/assets/logos/alert-triangle.png" alt="logo_exito" class="icono_exito">  
+            </div>
+            <p class="text-message">Ocurrio un error al editar el Grupo.</p>
+        </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>

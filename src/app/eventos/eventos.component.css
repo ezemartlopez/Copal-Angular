@@ -1,0 +1,110 @@
+*:not(.material-icons){
+    font-family: "Montserrat";
+}
+
+.btn-copal{
+    background-color: white;
+    color: #67b4c0;
+    border: 1px solid #67b4c0;
+}
+.btn-copal:hover{
+    background-color: #67b4c0;
+    color: white;
+}
+.btn-copal-d{
+    background-color:#67b4c0;
+    color: white;
+    
+}
+.btn-copal-d:hover{
+    background-color: white;
+    color: #67b4c0;
+    border: 1px solid #67b4c0;
+}
+.text-center{
+    text-align: center;
+}
+
+.container-buttons{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.container-cards{
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content:flex-start;
+    align-items: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.container-filter{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.container-select{
+    width: 250px;
+    height: auto;
+}
+.expand-total{
+    width: 100%;
+}
+.option-select{
+    width: 250px;
+}
+
+.container-paginable{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.actual-page{
+    background-color: #67b4c0;
+    color: white;
+}
+.sig-page{
+    color: #67b4c0;
+}
+.principal{
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+.aling-end-position{
+    margin-top: auto;
+}
+.total-width{
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    background-color: #67b4c0;
+}
+.custom-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title-page{
+    background-color: #67B4C0;
+    color: #283549;
+    font-size: 23px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+.container-box{
+    width: 100%;
+}

@@ -1,0 +1,256 @@
+:root {
+    --color-primary: #007bff; 
+    --color-secondary: #ff6347;
+    --color-text: #333; 
+    --color-background: #f5f5f5; 
+}
+*:not(.material-icons){
+    font-family: "Montserrat";
+}
+
+.box{
+    font-weight: bold;
+    font-size: 200%;
+    
+}
+
+/*Box 1 */
+.box1{
+    height: 30px;
+    
+}
+.box1 a{
+    display: flex;
+    margin-top: 20px;
+    color: #5fbec9;
+}
+/*Box 2*/
+.box2{
+    width: auto;
+    height: 80px;
+    background-color:#283549 ;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 180%;
+}
+
+/*Box 3*/
+.box3{
+    height: 250px;
+    
+}
+
+.box3-children1{
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+.box3 .box3-children1 .fila {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    margin-top: 20px;
+}
+.box3-children1 .fila p{
+    color: red;
+}
+.box3-children1 .fila1{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 300px;
+    
+}
+.box3-children1  .fila1 .fila1-1{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: auto;
+   
+}
+.box3-children1 .fila1 .fila1-1 .fila1-1-1{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    
+    align-items: center;
+    justify-content: center;
+}
+.box3-children1 .fila1 .fila1-1 .fila1-1-2{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    
+    align-items: center;
+    justify-content: center;
+}
+.punto{
+    display: flex;
+    height: 70%;
+}
+.fila-label{
+    display: flex;
+    align-items: center;
+    height: 28%;
+    width: 200px;
+    
+}
+.fila-input{
+    
+    height: 28%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+option{
+    color: #5fbec9;
+}
+.fila-input input,select{
+    width: 80%;
+    border-bottom: solid 1px #5fbec9;
+}
+
+.box3-children{
+    height: 200px;
+    background-color: white;
+}
+.box3-children .img-box3{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.box3-children1  .fila1 .fila1-2{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: auto;
+    
+}
+.box3-children1 .fila1 .fila1-2 .fila1-2-1{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    
+    align-items: center;
+    justify-content: center;
+}
+.box3-children1 .fila1 .fila1-2 .fila1-2-2{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    
+    align-items: center;
+    justify-content: center;
+}
+.box3-children1 .fila2{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+    
+}
+.box3-children1 .fila2 .fila2-1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 12px;
+}
+.box3-children1 .fila2 .fila2-1 .condicion{
+    color: #5fbec9;
+}
+.box3-children1 .fila3{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+   
+}
+.box3-children1 .fila3-1{
+    display: flex;
+    background-color: white;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.btnInscripcion{
+    background-color: #5fbec9;
+    width: 49%;
+    border:  1px #5fbec9;
+    height: 30px;
+    margin-right: 10px;
+    color: white;
+}
+.btnInscripcion:hover{
+    background-color: white;
+    color: #5fbec9;
+    border: solid  1px #5fbec9;
+}
+.btnCancelar{
+    background-color: #ffffff;
+    width: 49%;
+    border-color:#5fbec9;
+    height: 30px;
+    border:   solid 1px #5fbec9;
+    color: #5fbec9;
+}
+.btnCancelar:hover{
+    background-color: #5fbec9;
+    border: solid 1px #5fbec9;
+    color: white;
+}
+.invalido {
+    background-color: red;
+}
+.noFound{
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    
+    align-items: center;
+    border: solid 2px #283549;
+    border-radius: 20px;
+}
+.texto{
+    font-size: 60px;
+    color: #000000;
+}
+.infoEvento{
+    border: 1px solid #5fbec9;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.infoEvento p{
+    font-size: 18px;
+}
+#fila-input-email {
+    display: flex;
+    
+}
+#fila-input-email #email-validation{
+    font-size: 10px;
+    color: red;
+}
+
+.header-title-page{
+    background-color: #67B4C0;
+    color: #283549;
+    font-size: 23px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+.container-box{
+    width: 100%;
+}

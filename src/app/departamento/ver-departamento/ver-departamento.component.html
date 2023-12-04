@@ -1,0 +1,44 @@
+
+<div class="relative max-w-[1126px] mx-auto">
+    <div>
+        <h1 class="flex w-full mx-auto bg-ligth-blue text-dark-blue font-Monserrat font-extrabold text-2xl pl-2 py-6 justify-center">
+          <a href="/departamentos">Gestion de Departamentos</a>
+        </h1>
+    </div>
+    <br>
+    <div class="container-button-back">
+        <a href="departamentos">
+            <button class="btn btn-back"> Regresar</button>
+        </a>
+    </div>
+    <br>
+    <div *ngIf="info && !noExiste" class="container-view-dep">
+        <img [src]="getImagen()" alt="Imagen_log" class="container-img-dep">
+        <div class="container-view-info">
+            <div class="dep-nombre-title">
+                <h1 class="row-dep-info text-center title-text">{{info.nombreDeDepartamento}}</h1>
+            </div>
+            <div class="dep-description-text">
+                <p class="row-dep-info text-center">{{info.descripcion}}</p>
+            </div>
+        </div>
+    
+        <div class="container-view-autority">
+            <h1 class="row-dep-info title-text">Autoridades</h1>
+            <p *ngIf="info.autoridades.length === 0">No hay autoridades asignadas.</p>
+            <div *ngFor="let autoridad of info.autoridades" class="row-info">
+                <p class="row-info-role">{{autoridad.rol.rol}}</p>
+                <p class="row-info-user">{{autoridad.usuario.nombre + " " + autoridad.usuario.apellido}}</p>
+            </div>
+            <h1 class="row-dep-info title-text">Usuarios</h1>
+            <p *ngIf="info.usuariosAsociados.length === 0">No hay usuarios asignados.</p>
+            <div *ngFor="let usuario of info.usuariosAsociados" class="row-info">
+                <p class="row-userasig">{{usuario.nombre + " " + usuario.apellido}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="noExiste" >
+    <h1 class="text-center"> No existe este Sub-Departamento</h1>
+</div>

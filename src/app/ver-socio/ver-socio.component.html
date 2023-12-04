@@ -1,0 +1,170 @@
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="/gestion-de-socios">Gestion de socios</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ver socio</li>
+        </ol>
+    </nav>
+    <div class="flex w-full max-w-[1126px] mx-auto bg-ligth-blue text-dark-blue font-Monserrat text-2xl pl-2 py-6">
+        <h1 class="font-medium">Gestion de socios</h1>
+    </div>
+
+    <section class="w-full max-w-[1126px] mx-auto py-2 xl:px-0">
+        <span class="flex flex-row justify-between gap-4 lg:gap-8 font-Monserrat">
+            <!--<div class="max-w-[400px] w-full mx-auto">
+        <h2 class="text-xl text-center font-bold bg-dark-blue text-white py-2 px-2">
+            Datos de Usuario
+        </h2>
+    <div class="flex font-medium text-dark-blue pt-2 w-full">
+        <span class="pr-1">
+            Usuario:
+        </span>
+        <span class="flex mx-2 border-b border-ligth-blue grow">
+            {{formData.usuario.nombre}}
+        </span>
+    </div>
+
+    <div class="flex font-medium text-dark-blue pt-2 w-full">
+        <span class="pr-1">
+            Tipo de usuario:
+        </span>
+        <span class="flex mx-2 border-b border-ligth-blue grow">
+            {{formData.usuario.tipoDeUsuario.nombreTipoUsuario}}
+        </span>
+    </div>
+
+    </div>-->
+
+            <div class="grow gap-4"><!--</div>class="max-w-[600px] w-full mx-auto">-->
+
+                <h2 class="text-xl text-center font-bold bg-dark-blue text-white py-2 px-2">
+                    Datos de asociado
+                </h2>
+                <!--div *ngIf='!loading'-->
+                <div>
+                    <!--img *ngIf="formData.urlLogo!==null && !formData.urlLogo.endsWith('no_imagen_socio.png')"  class="mx-auto my-2 h-28" src="{{formData.urlLogo}}" alt="Icono Empresa"/-->
+                    <div class="flex flex-column gap-y-4 my-2 px-2">
+                        <div class="flex font-medium text-dark-blue pt-2 w-full">
+                            <span class="pr-1">
+                                Nombre:
+                            </span>
+                            <span class="flex mx-2 border-b border-ligth-blue grow">
+                                {{formData.nombreDeEmpresa}}
+                            </span>
+                        </div>
+
+                        <div class="flex font-medium text-dark-blue pt-2 w-full">
+                            <span class="pr-1">
+                                Razon Social:
+                            </span>
+                            <span class="flex mx-2 border-b border-ligth-blue grow">
+                                {{formData.razonSocial}}
+                            </span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="flex font-medium text-dark-blue pt-2 w-full">
+                                <span class="pr-1">
+                                    Tipo de Socio:
+                                </span>
+                                <span class="flex mx-2 border-b border-ligth-blue grow">
+                                    {{formData.nombreTipoSocio}}
+                                </span>
+                            </div>
+                            <div class="flex font-medium text-dark-blue pt-2 w-full">
+                                <span class="pr-1">
+                                    Area:
+                                </span>
+                                <span class="flex mx-2 border-b border-ligth-blue grow">
+                                    {{formData.area}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="flex font-medium text-dark-blue pt-2 w-full">
+                                <span class="pr-1">
+                                    CUIT:
+                                </span>
+                                <span class="flex mx-2 border-b border-ligth-blue grow">
+                                    {{formData.cuit}}
+                                </span>
+                            </div>
+                            <div class="flex font-medium text-dark-blue pt-2 w-full">
+                                <span class="pr-1">
+                                    Tel:
+                                </span>
+                                <span class="flex mx-2 border-b border-ligth-blue grow">
+                                    {{formData.contacto.numeroTelefono}}
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="flex font-medium text-dark-blue pt-2 w-full">
+                            <span class="pr-1">
+                                E-mail:
+                            </span>
+                            <span class="flex mx-2 border-b border-ligth-blue grow">
+                                {{formData.contacto.mail}}
+                            </span>
+                        </div>
+
+                        <div class="flex font-medium text-dark-blue  w-full">
+                            <div class="flex font-medium text-dark-blue pt-2 w-full">
+                                <span class="pr-1">
+                                    Calle:
+                                </span>
+                                <span class="flex mx-2 border-b border-ligth-blue grow">
+                                    {{formData.ubicacion.calle}}
+                                </span>
+                            </div>
+                            <div class="flex font-medium text-dark-blue pt-2 w-full">
+                                <span class="pr-1">
+                                    N°:
+                                </span>
+                                <span class="flex mx-2 border-b border-ligth-blue grow">
+                                    {{formData.ubicacion.altura}}
+                                </span>
+                            </div>
+                            <div class="flex font-medium text-dark-blue pt-2 w-full">
+                                <span class="pr-1">
+                                    Piso:
+                                </span>
+                                <span class="flex mx-2 border-b border-ligth-blue grow">
+                                    {{formData.ubicacion.piso}}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <div class="flex font-medium text-dark-blue pt-2 w-full">
+                                <span class="pr-1">
+                                    Provincia:
+                                </span>
+                                <span class="flex mx-2 border-b border-ligth-blue grow">
+                                    {{formData.ubicacion.provincia}}
+                                </span>
+                            </div>
+                            <div class="flex font-medium text-dark-blue pt-2 w-full">
+                                <span class="pr-1">
+                                    CP:
+                                </span>
+                                <span class="flex mx-2 border-b border-ligth-blue grow">
+                                    {{formData.ubicacion.codigoPostal}}
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="flex font-medium text-dark-blue pt-2 w-full">
+                            <span class="pr-1">
+                                URL de la empresa:
+                            </span>
+                            <span class="flex mx-2 border-b border-ligth-blue grow">
+                                {{formData.urlSocio}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </section>
+</div>

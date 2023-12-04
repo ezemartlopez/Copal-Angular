@@ -1,0 +1,427 @@
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="#">Home</a></li>
+  <li class="breadcrumb-item"><a href="/gestion-de-socios">Gestion de socios</a></li>
+  <li class="breadcrumb-item active" aria-current="page">{{formData.get('id').value? "Editar" : "Agregar"}} socio</li>
+  </ol>
+</nav>
+<div
+  class="flex w-full max-w-[1126px] mx-auto bg-ligth-blue text-dark-blue font-Monserrat text-2xl pl-4 py-6"
+>
+  <h1 class="font-extrabold">Gestion de socios</h1>
+</div>
+
+<section class="w-full max-w-[1126px] mx-auto py-4 px-4 xl:px-0">
+
+  <form
+    (ngSubmit)="saveData()"
+    [formGroup]="formData"
+    class="flex flex-col gap-8"
+  >
+    <span class="flex flex-row justify-between gap-4 lg:gap-8 font-Monserrat">
+      <!--<span class="grow">
+        <h2
+          class="text-xl text-center font-bold bg-dark-blue text-white py-2 px-2"
+        >
+          Datos de Usuario
+        </h2>
+        <span class="flex flex-col">
+          <div class="form-field">
+            <mat-form-field class="w-full">
+              <mat-label>Nombre de usuario</mat-label>
+              <input
+                matInput
+                type="text"
+                required
+                autocomplete="on"
+                formControlName="username"
+                maxlength="30"
+                minlength="1"
+              />
+              <mat-icon matSuffix class="text-dark-blue"
+                >account_circle</mat-icon
+              >
+              <mat-error class="text-xs"
+                      *ngIf="formData.get('username').touched && formData.get('username').hasError('required')">
+                Debe completar el campo username.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-field">
+            <mat-form-field class="w-full">
+              <mat-label>Contraseña</mat-label>
+              <input
+                matInput
+                type="password"
+                required
+                autocomplete="off"
+                formControlName="password"
+                maxlength="30"
+                minlength="8"
+              />
+              <mat-icon matSuffix class="text-dark-blue">password</mat-icon>
+              <mat-error class="text-xs"
+                      *ngIf="formData.get('password').touched && formData.get('password').hasError('required')">
+                Debe completar el campo contraseña.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-field">
+            <mat-form-field class="w-full">
+              <mat-label>Tipo de usuario</mat-label>
+              <mat-select
+                name="tipo de Usuario"
+                formControlName="tipoDeUsuario"
+              >
+                el name entiendo que es innecesario a menos que cambies algo del mat select en otro lado
+                NO USAR ngModel si estas usando formControl PORQUE ROMPE
+                esto es la propiedad del array (el .nombre). Usar esas, no las del JSON
+                <mat-option
+                  *ngFor="let tipo of tipoDeUsuariosArray"
+                  [value]="tipo"
+                  >{{ tipo.nombre }}</mat-option
+                >
+              </mat-select>
+              <mat-error class="text-xs"
+                      *ngIf="formData.get('tipoDeUsuario').touched && formData.get('tipoDeUsuario').hasError('required')">
+                Debe completar el campo tipo de usuario.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </span>
+      </span>-->
+      <div class="grow">
+        <h2
+          class="text-xl text-center font-bold bg-dark-blue text-white py-2 px-2"
+        >
+          Datos de Socio
+        </h2>
+        <span class="flex flex-col">
+          <div class="form-field">
+            <mat-form-field class="w-full copal-field">
+              <mat-label>Nombre de la empresa</mat-label>
+              <input
+                matInput
+                type="text"
+                required
+                autocomplete="on"
+                formControlName="nombreEmpresa"
+                maxlength="50"
+                minlength="3"
+                class="copal-input"
+              />
+              <mat-icon matSuffix class="text-dark-blue">business</mat-icon>
+              <!-- borrar / cambiar por un icono-->
+              <mat-error class="text-xs"
+                      *ngIf="formData.get('nombreEmpresa').touched && formData.get('nombreEmpresa').hasError('required')">
+                Debe completar el campo nombre de empresa.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-field">
+            <mat-form-field class="w-full">
+              <mat-label>Razon Social</mat-label>
+              <input
+                matInput
+                type="text"
+                required
+                autocomplete="on"
+                formControlName="razonSocial"
+                maxlength="70"
+                minlength="1"
+              />
+              <mat-icon matSuffix class="text-dark-blue">gavel</mat-icon>
+              <!-- borrar / cambiar por un icono-->
+              <mat-error class="text-xs"
+                      *ngIf="formData.get('razonSocial').touched && formData.get('razonSocial').hasError('required')">
+                Debe completar el campo razon social.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </span>
+        <div class="form-field">
+          <mat-form-field class="w-full">
+            <mat-label>Telefono de la empresa</mat-label>
+            <input
+              matInput
+              autocomplete="on"
+              required
+              formControlName="telefono"
+              maxlength="300"
+              minlength="1"
+              type="text"
+              placeholder="01112345678,1112345678,1512345678,01512345678"
+            />
+            <mat-icon matSuffix class="text-dark-blue">phone</mat-icon>
+            <!-- borrar / cambiar por un icono-->
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('telefono').touched && formData.get('telefono').hasError('required')">
+              Debe completar el campo telefono.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field class="w-full">
+            <mat-label>CUIT</mat-label>
+            <input
+              matInput
+              type="text"
+              required
+              autocomplete="on"
+              formControlName="cuit"
+              maxlength="13"
+              minlength="11"
+              placeholder="20-12345698-0 20123456789"
+              pattern="^(20|23|24|27|30|33|34)([0-9]{9}|-[0-9]{8}-[0-9]{1})$"
+            />
+            <mat-icon matSuffix class="text-dark-blue"
+              >grid_goldenratio</mat-icon
+            >
+            <!-- borrar / cambiar por un icono-->
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('cuit').touched && formData.get('cuit').hasError('required')">
+              Debe completar el campo cuit.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field class="w-full">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              autocomplete="on"
+              required
+              formControlName="mail"
+              maxlength="90"
+              minlength="10"
+              type="email"
+            />
+            <mat-icon matSuffix class="text-dark-blue"
+              >alternate_email</mat-icon
+            >
+            <!-- borrar / cambiar por un icono-->
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('mail').touched && formData.get('mail').hasError('required')">
+              Debe completar el campo mail.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field class="w-full">
+            <mat-label>Tipo de Socio</mat-label>
+            <mat-select name="tipoDeSocio" formControlName="tipoDeSocio" >
+              <mat-option
+                *ngFor="let tipo of tipoDeSociosArray"
+                [value]="tipo"
+                >{{ tipo.nombre }}</mat-option
+              >
+            </mat-select>
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('tipoDeSocio').touched && formData.get('tipoDeSocio').hasError('required')">
+              Debe completar el campo tipo de socio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field class="w-full">
+            <mat-label>Pagina web del socio</mat-label>
+            <input
+              matInput
+              type="url"
+              autocomplete="on"
+              formControlName="urlSocio"
+              placeholder="www.google.com"
+              maxlength="500"
+              minlength="1"
+            />
+            <mat-icon matSuffix class="text-dark-blue">link</mat-icon>
+            <!-- borrar / cambiar por un icono-->
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('urlSocio').touched && formData.get('urlSocio').hasError('required')">
+              Debe completar el campo url de la empresa.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field class="w-full">
+            <mat-label>Area de expertise</mat-label>
+            <mat-select name="Area" formControlName="area">
+              <mat-option *ngFor="let area of areasArray" [value]="area">{{
+                area.nombre
+              }}</mat-option>
+            </mat-select>
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('area').touched && formData.get('area').hasError('required')">
+              Debe completar el campo area de expertise.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field class="w-full">
+            <mat-label>Calle</mat-label>
+            <input
+              matInput
+              required
+              autocomplete="on"
+              formControlName="calle"
+              maxlength="100"
+              minlength="1"
+              type="text"
+            />
+            <mat-icon matSuffix class="text-dark-blue">sarasa</mat-icon>
+            <!-- borrar / cambiar por un icono-->
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('calle').touched && formData.get('calle').hasError('required')">
+              Debe completar el campo calle.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- SHIFT + TAB BORRA TABULACIONES.-->
+
+        <div class="form-field">
+          <mat-form-field class="w-full">
+            <mat-label>Altura</mat-label>
+            <input
+              matInput
+              required
+              autocomplete="on"
+              formControlName="altura"
+              max="9999"
+              type="number"
+            />
+            <mat-icon matSuffix class="text-dark-blue">sarasa</mat-icon>
+            <!-- borrar / cambiar por un icono-->
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('altura').touched && formData.get('altura').hasError('required')">
+              Debe completar el campo altura.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label class="w-full">Piso</mat-label>
+            <input
+              matInput
+              required
+              autocomplete="on"
+              formControlName="piso"
+              type="number"
+              class="w-full"
+            />
+            <mat-icon matSuffix class="text-dark-blue">sarasa</mat-icon>
+            <!-- borrar / cambiar por un icono-->
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('piso').touched && formData.get('piso').hasError('required')">
+              Debe completar el campo piso.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field class="w-full">
+            <mat-label>Codigo Postal</mat-label>
+            <input
+              matInput
+              required
+              autocomplete="on"
+              formControlName="codigoPostal"
+              max="9999"
+              type="number"
+            />
+            <mat-icon matSuffix class="text-dark-blue">sarasa</mat-icon>
+            <!-- al configurarlo como number, ignora el maxLength y minLength. -->
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('codigoPostal').touched && formData.get('codigoPostal').hasError('required')">
+              Debe completar el campo codigo postal.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field class="w-full" name="provincia">
+            <mat-label for="Provincia">Provincia</mat-label>
+            <!--ES POR ACÁ, ES CON EL [(VALUE)] PARA EL TWO WAY BINDING-->
+            <mat-select
+            
+              name="Provincia"
+              formControlName='provincia'
+              id='provincia'
+              (selectionChange)="obtenerLocalidades($event.value.id)"
+            >
+              <mat-option
+                *ngFor="let provincia of provinciasArray"
+                [value]="provincia"
+                >{{ provincia.nombre }}</mat-option
+              >
+            </mat-select>
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('provincia').touched && formData.get('provincia').hasError('required')">
+              Debe completar el campo provincia.
+            </mat-error>
+          </mat-form-field>
+            <!--<input type="file" class="file-input hidden"
+            (change)="onFileSelected($event)" #fileUpload>  se llama fileUpload y se lo llama abajo
+            <div class="file-upload">
+            {{fileName || "Ingrese un logo"}}
+            <button type="button" mat-mini-fab color="primary" class="upload-btn"
+            (click)="fileUpload.click()"> simula como si el usuario lo hubiese clickeado
+            <mat-icon>attach_file</mat-icon>
+            </button>
+            </div> -->
+          <mat-form-field class="w-full" name="localidad">
+            <mat-label for="Localidad">Localidad</mat-label>
+            <!--ES POR ACÁ, ES CON EL [(VALUE)] PARA EL TWO WAY BINDING-->
+            <mat-select
+            
+              name="Localidad"
+              formControlName='localidad'
+              id='localidad'
+            >
+              <mat-option
+                *ngFor="let localidad of localidadesArray"
+                [value]="localidad"
+                >{{ localidad.nombre }}</mat-option
+              >
+            </mat-select>
+            <!--<mat-error class="text-xs"
+                    *ngIf="formData.get('localidad').touched && formData.get('localidad').hasError('required')">
+              Debe completar el campo localidad.
+            </mat-error>-->
+          </mat-form-field>
+          <!--<mat-form-field class="w-full">
+            <mat-label>Logo URL</mat-label>
+            <input
+              matInput
+              required
+              autocomplete="on"
+              formControlName="urlLogo"
+              maxlength="90"
+              minlength="1"
+            />
+            <mat-icon matSuffix class="text-dark-blue">link</mat-icon>
+           
+            <mat-error class="text-xs"
+                    *ngIf="formData.get('urlLogo').touched && formData.get('urlLogo').hasError('required')">
+              Debe completar el campo logo.
+            </mat-error>
+          </mat-form-field>-->
+          <button type="button" mat-raised-button (click)="fileInput.click()">Seleccione una imagen</button>
+          <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" accept=".png, .jpeg, .jpg">
+          <span class="file-name px-2">{{imagenAEnviar?.name}}</span>
+          <span *ngIf="modoEditar && !imagenAEnviar">{{formData.get('urlLogo').value}}</span>
+          
+        </div>
+      </div>
+    </span>
+
+    <!-- saque el mat-raised-button -->
+    <button
+      color="primary"
+      type="button"
+      *ngIf="!disableSaveButton"
+      [disabled]="!formData.valid"
+      (click)="saveData()"
+      class="ml-auto mt-4 font-Monserrat bg-ligth-blue text-white py-4 px-8 cursor-pointer"
+    >
+      Guardar
+    </button>
+  </form>
+</section>
+</div>

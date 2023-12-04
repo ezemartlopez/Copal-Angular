@@ -1,0 +1,32 @@
+<div  class="flex flex-col h-full">
+  
+  <main  id="main" class="w-full h-full grow mt-[80px]">
+    <router-outlet></router-outlet>
+  </main>
+  
+  <app-sidebar  class="fixed top-0 left-0"></app-sidebar>
+  <app-navbar id="nav"  class="fixed top-0 left-0 w-full"></app-navbar>
+  <!--nav class=" sticky-top flex flex-row">
+    <app-navbar id="nav" class="w-full"></app-navbar>
+  </nav>
+  <mat-sidenav-container >
+    <mat-sidenav id="sidenav" mode="side">
+      <app-sidebar ></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container-->
+
+
+
+  
+  <!--div id="contenido" class="flex flex-1 flex-row">
+    <app-sidebar  class="copal-sidebar"></app-sidebar>
+    <main  id="main" class="w-full ">
+      <router-outlet></router-outlet>
+    </main>
+  </div-->
+</div>

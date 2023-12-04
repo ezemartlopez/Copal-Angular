@@ -1,0 +1,31 @@
+<mat-dialog-content>
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+  ></div>
+  <!-- <div class="bg-slate-100 rounded-md shadow-md p-4">
+        <div class="flex justify-center">
+            <h1 class="text-dark-blue font-Monserrat font-bold text-xl">¿Está seguro que desea eliminar este socio?</h1>
+        </div>
+        <div class="flex justify-center">
+            <h1 class="text-dark-blue font-Monserrat font-bold text-xl">Este proceso es IRREVERSIBLE</h1>
+        </div>
+        <div class="flex justify-between pt-8">
+            <button class="text-white font-Monserrat bg-ligth-blue text-sm px-2 py-3 flex items-center gap-2" >
+                CANCELAR <img class="w-8" src="assets/Icono_Ver.png" alt="Cancelar">
+            </button>
+            <button class="text-white font-Monserrat bg-ligth-blue text-sm px-2 py-3 flex items-center gap-2" >
+                ELIMINAR SOCIO <img class="w-8" src="assets/Icono_Eliminar.png" alt="Eliminar Socio">
+            </button>
+        </div>
+    </div> -->
+  <h1 mat-dialog-title>¿Está seguro que desea eliminar este socio?</h1>
+  <div mat-dialog-content>
+    <p class="text-center">Este proceso es IRREVERSIBLE</p>
+  </div>
+  <div class="flex justify-between items-center">
+    <button mat-button [mat-dialog-close]="true">CANCELAR</button>
+    <button mat-button class="btn btn-danger border-2 px-2 py-2" (click)="onDeleteClick()">
+      ELIMINAR SOCIO
+    </button>
+  </div>
+</mat-dialog-content>

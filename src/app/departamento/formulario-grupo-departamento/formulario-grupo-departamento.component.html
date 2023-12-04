@@ -1,0 +1,73 @@
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto h-[750px]">
+    <!--Caja 0 -->
+    <div>
+      <div class="box">
+        <h1 class="flex w-full mx-auto bg-ligth-blue text-dark-blue font-Monserrat font-extrabold text-2xl pl-2 py-6 justify-center">
+          Gestion de Departamentos | Crear Grupo
+        </h1>
+      </div>
+    </div> 
+    <!--Caja 1 --> 
+    <div class="box1">
+        <a href="/departamentos"><button class="btn btn-back"> Regresar</button></a>
+    </div>
+    <br>
+    <!--Caja 2 --> 
+    <div class="font-Monserrat box2">
+        <h2>Datos de grupo</h2>
+        <br>
+        <div class="box2-hijo">
+            <h3 class="font-Monserrat" >Nombre</h3>
+            <input class="caja-input" [(ngModel)]="inputGrupoNombre" [value]="inputGrupoNombre"/>
+        </div>    
+        <br>
+        <div class="box2-hijo">
+            <h3 class="font-Monserrat">Descripción</h3>
+            <input class="caja-input" [(ngModel)]="inputGrupoDescripcion" [value]="inputGrupoDescripcion"/>
+        </div>
+    </div>
+     <!--Caja 3 --> 
+    <div class="font-Monserrat box3">
+        <h2>Autoridades del Grupo</h2>
+        <br>
+        <br>
+        <div class="users-add-dep" *ngIf="usuariosDepartamento.length!==0">
+            <ul >
+                <li *ngFor="let usuario of listarUsuarios()">
+                    <div class="row-li-users">
+                        <span><strong>Usuario: </strong>{{usuario.name}}</span>
+                        <span><strong>Rol Asignado: </strong>{{usuario.rol}}</span>
+                        <span class="material-icons" type="button" (click)="eliminarUsuarioCargado(usuario.name)">cancel</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div class="box3-hijo">
+            <h3 class="font-Monserrat">Usuario</h3>
+            <select class="w3-select input-custom caja-input" name="user" [(ngModel)]="inputUsuario">
+                <option *ngFor="let usuario of opcionesUsuarios; let i=index" [ngValue]="usuario" class="custom-option">{{usuario.nombre}}</option>
+            </select>
+        </div>
+        <br>
+        <br>
+        <div class="box3-hijo">
+            <h3 class="font-Monserrat">Rol del usuario</h3>
+            <select class="caja-input" [(ngModel)]="inputUsuarioRol">
+                <option *ngFor="let rol of opcionesRol; let i=index" [value]="rol.rol">{{rol.rol}}</option>
+            </select>
+        </div>   
+    </div>
+    <!--Caja 4-->
+    <div class="font-monserrat box4">
+        <div class="btn box4-hijo">
+            <img src="../../../assets/logos/icono-nuevo.png" class="icono"/>
+            <button type="button" class="btn-nuevo" (click)="agregarUsuario()">Agregar nuevo usuario</button>
+        </div>
+    </div>
+    <!--Caja 5-->
+    <div class="font-monserrat box5">
+        <button type="button" class="btnAgregar" (click)="enviarGrupo()">AGREGAR GRUPO</button>
+        <button type="button" class="btnCancelar">CANCELAR</button>
+    </div>
+</div>

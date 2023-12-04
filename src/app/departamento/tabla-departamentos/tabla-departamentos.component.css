@@ -1,0 +1,190 @@
+/*TABLAS*/
+.container-table{
+    width: 100%;
+    height: auto;
+}
+.table{
+    width: 100%;
+    height: auto;
+}
+.row-container-line, .row-container{
+    width: 100%;
+    height: auto;
+}
+.custom-table-header{
+    color: white;
+    background-color: #283549;
+    font-size: 1.2rem;
+}
+
+/*ESTILOS A LA TABLA INTERNA*/
+.row-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.row-data{
+    width: 450px;
+    text-align: start;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.row-data-info{
+    width: 450px;
+    text-align: start;
+}
+.row-middle{
+    flex: 1;
+    height: 2.5rem;
+}
+
+
+/*BUTTONS*/
+.container-buttons-actions{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-buttons{
+    width: 200px;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.container-buttons > img{
+    width: 2rem;
+    height: 2rem;
+    background-color: #67b4c0;
+    border-radius: 50%;
+    object-fit:scale-down;
+}
+.container-buttons > img:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.group-info-container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: auto;
+    width: 1126px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container-group-description {
+    width: 70%;
+}
+
+.container-group-description > p {
+    width: 100%;
+    height: auto;
+    padding-left: 15px;
+    padding-right: 55px;
+    text-align: center;
+}
+
+.container-group-authorities {
+    width: 30%;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.container-authorities{
+    width: 100%;
+    height: auto;
+}
+
+.authorities-line{
+    width: auto;
+    height: auto;
+    margin-left: 20px;
+}
+.authorities-title{
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.authorities-rol{
+    font-size: 1rem;
+    font-weight: bold;
+    color: #df7d7c;
+}
+.authorities-name{
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+/*ESTILOS PARA LA ZONA DE CARDS*/
+.row-container-toggle{
+    width: 100%;
+    height: auto;
+}
+.container-cards{
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+.container-adaptive-cards{
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.text-bold{
+    font-weight: bold;
+}
+
+.padd-left{
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+.btn-delete{
+    background-color: red;
+    color: white;
+}
+.btn-delete:hover{
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+}
+.btn-cerrar{
+    background-color: #67b4c0;
+    color: white;
+}
+.btn-cerrar:hover{
+    background-color: white;
+    border: 1px solid #67b4c0;
+    color: #67b4c0;
+}
+.contenedor-response{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.img-response{
+    width: 80px;
+    height: 80px;
+}

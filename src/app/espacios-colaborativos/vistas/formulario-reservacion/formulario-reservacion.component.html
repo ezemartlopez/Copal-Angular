@@ -1,0 +1,181 @@
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto mt-3">
+    <img src="assets/logos/copal.png" alt="">
+    <div>
+        <h1 class="flex w-full mx-auto bg-ligth-blue text-dark-blue font-Monserrat font-extrabold text-2xl pl-2 py-6 justify-center">
+            Reservacion de Espacio Colaborativo
+        </h1>
+    </div>
+</div>
+<div class="relative max-w-[1126px] mx-auto">
+    <div class="container mt-3">
+        <div class="row mb-3">
+            <!--Seleccion del espacio-->
+            <div class="col-6">
+                <div class="input-group custom-group">
+                    <label class="input-group-text custom-label">* Seleccione espacio</label>
+                    <select class="form-select custom-select" [(ngModel)]="formulario.campos['espacio'].valorInicial" (blur)="formulario.campos['espacio'].fieldTouched()">
+                        <option selected value="" disabled>Elija un espacio...</option>
+                        <option *ngFor="let op of opcionesEspacios" [value]="op.id">{{op.nombre}}</option>
+                    </select>                 
+                </div>
+                <div *ngIf="formulario.tieneErrores('espacio')" class="alert alert-danger" role="alert">
+                    {{formulario.validarCampos()['espacio']}}
+                </div>  
+            </div>
+            <!--Seleccion del departamento a cargo-->
+            <div class="col-6">
+                <div class="input-group custom-group">
+                    <label class="input-group-text custom-label">Departamento a cargo</label>
+                    <select class="form-select custom-select" [(ngModel)]="formulario.campos['departamento'].valorInicial" (blur)="formulario.campos['departamento'].fieldTouched()">
+                        <option selected value="" disabled>Seleccione el departamento</option>
+                        <option *ngFor="let op of opcionesDepartamentos" [value]="op.id">{{op.nombre}}</option>
+                    </select>                    
+                </div>
+                <div *ngIf="formulario.tieneErrores('departamento')" class="alert alert-danger" role="alert">
+                    {{formulario.validarCampos()['departamento']}}
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="input-group custom-group">
+                    <label class="input-group-text custom-label">* Responsable</label>
+                    <input type="text" class="form-control custom-input" [(ngModel)]="formulario.campos['nombre'].valorInicial" (blur)="formulario.campos['nombre'].fieldTouched()">                   
+                </div>
+                <div *ngIf="formulario.tieneErrores('nombre')" class="alert alert-danger" role="alert">
+                    {{formulario.validarCampos()['nombre']}}
+                </div>  
+            </div>
+            <div class="col-6">
+                <div class="input-group custom-group">
+                    <!--[(ngModel)]="formulario.campos['nombre'].valorInicial" name="nombre" placeholder="Nombre" (blur)="formulario.campos['nombre'].fieldTouched()"-->
+                    <label class="input-group-text custom-label">* Mail</label>
+                    <input type="text" class="form-control custom-input" [(ngModel)]="formulario.campos['mail'].valorInicial" (blur)="formulario.campos['mail'].fieldTouched()">                   
+                </div>
+                <div *ngIf="formulario.tieneErrores('mail')" class="alert alert-danger" role="alert">
+                    {{formulario.validarCampos()['mail']}}
+                </div> 
+            </div>
+        </div>
+        <br>
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="input-group custom-group">
+                    <label class="input-group-text custom-label">*Hora Inicio</label>
+                    <input type="time" class="form-control custom-input" [(ngModel)]="formulario.campos['horaInicio'].valorInicial" (blur)="formulario.campos['horaInicio'].fieldTouched()">                   
+                </div>
+                <div *ngIf="formulario.tieneErrores('horaInicio')" class="alert alert-danger" role="alert">
+                    {{formulario.validarCampos()['horaInicio']}}
+                </div> 
+                <div *ngIf="esHoraInicioInvalida(formulario.campos['fecha'].valorInicial,formulario.campos['horaInicio'].valorInicial)" class="alert alert-danger" role="alert">
+                    La Hora de Inicio debe ser mayor que la hora actual..
+                </div> 
+            </div>
+            <div class="col-6">
+                <div class="input-group custom-group">
+                    <label class="input-group-text custom-label">* Hora finalización</label>
+                    <input type="time" class="form-control custom-input" [(ngModel)]="formulario.campos['horaFin'].valorInicial" (blur)="formulario.campos['horaFin'].fieldTouched()">                   
+                </div>
+                <div *ngIf="formulario.tieneErrores('horaFin')" class="alert alert-danger" role="alert">
+                    {{formulario.validarCampos()['horaFin']}}
+                </div> 
+                <div *ngIf="esHoraFinInvalida(formulario.campos['horaInicio'].valorInicial,formulario.campos['horaFin'].valorInicial)" class="alert alert-danger" role="alert">
+                    La Hora de finaliacion debe ser Mayor...
+                </div> 
+            </div>
+        </div>
+        <br>
+        <div class="row mb-3">
+            <!--Seleccion del espacio-->
+            <div class="col-6">
+                <div class="input-group custom-group">
+                    <label class="input-group-text custom-label">* Fecha de reserva</label>
+                    <input type="date" class="form-control custom-input" [(ngModel)]="formulario.campos['fecha'].valorInicial" (blur)="formulario.campos['fecha'].fieldTouched()">                    
+                </div>
+                <div *ngIf="formulario.tieneErrores('fecha')" class="alert alert-danger" role="alert">
+                    {{formulario.validarCampos()['fecha']}}
+                </div>  
+            </div>
+            <!--Seleccion del departamento a cargo-->
+            <div class="col-6">
+                <!--Falta mejorar el aspecto de los checkeds y nada mas-->
+                <div class="input-group">
+                    <label class="input-group-text custom-label">Recursos</label>
+                    <div class="dropdown custom-multiple">
+                      <button class="btn btn-multiple dropdown-toggle" type="button" (click)="toggleOptions()">
+                        Seleccionados: {{ selectedOptions.length }}
+                      </button>
+                      <div class="dropdown-menu c-multiple" [class.show]="showOptions">
+                        <span *ngFor="let op of opcionesRecursos" (click)="toggleOption(op.id)" class="dropdown-item">
+                          {{selectedOptions.includes(op.id) ? '&#10003;' : '&#9744;'}} {{op.nombre}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+            </div>
+        </div>
+        <br>
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="form-floating">
+                    <textarea class="form-control custom-textarea" placeholder="" id="floatingTextarea" style="height: 100px"[(ngModel)]="formulario.campos['descripcion'].valorInicial"></textarea>
+                    <label for="floatingTextarea custom-label">Descripción adicional</label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container-actions">
+            <button *ngIf="!isLoadding" class="btn btn-copal-active" (click)="enviarFormulario()">Reservar</button>
+            <button *ngIf="isLoadding" class="btn btn-copal-active">
+                <span class="spinner-border spinner-border-sm"></span>
+                Enviando..
+              </button>
+            <button class="btn btn-copal">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+  <!-- Modal -->
+  <div *ngIf="showModal" class="modal fade centered-modal" tabindex="-1" aria-labelledby="exampleModalLabel" [ngClass]="{ 'show visibleModal': showModal }">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title text-title" id="exampleModalLabel">¡Gracias por reservar con nosotros!</h1>
+          <button type="button" class="btn btn-closed" (click)="closeModal()">X</button>
+        </div>
+        <div class="modal-body center-items">
+            <p class="text-center">Tu código de seguimiento es :</p>
+            <div class="input-group input-code">
+                <input type="text" class="form-control" placeholder="Username" [value]="inputCodigo">
+                <span class="material-icons input-group-text" (click)="copiarPortapapeles()">content_copy</span>
+            </div>
+            <p *ngIf="textoCopiado" class="mensaje-exitoso">Se copio al portapapeles</p>
+            <p class="text-center">Este código te permitirá realizar un seguimiento de tu reserva y obtener información actualizada</p>
+            <a href="/espacios-colaborativos/reservacion" class="btn btn-copal" type="button"> Ver estado Reserva</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal ERROR -->
+    <div *ngIf="showError" class="modal fade centered-modal" tabindex="-1" aria-labelledby="exampleModalLabel" [ngClass]="{ 'show visibleModal': showError }">
+        <div class="modal-dialog" style="width: 500px;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title text-title" id="exampleModalLabel">¡Upps ocurrio un error!</h1>
+              <button type="button" class="btn btn-closed" (click)="closeError()">X</button>
+            </div>
+            <div class="modal-body center-items">
+                <div class="rounded-container">
+                    <img src="assets/logos/alert-triangle.png" alt="logo alert" class="logo-alerta">
+                </div>
+                <p class="text-center">Ocurrio un error al solicitar la reserva.</p>
+            </div>
+          </div>
+        </div>
+      </div>

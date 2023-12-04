@@ -1,0 +1,121 @@
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto h-[1100px] container-global">
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb ml-2 mb-0">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active"><a href="/eventos">Gestion de Eventos</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Ver Evento</li>
+        </ol>
+    </nav>
+    <div class="container-box">
+        <h1 class="header-title-page">
+          Gestion de Eventos
+        </h1>
+    </div>
+    <div class="box1">
+        <a href="/eventos">Regresar</a>
+    </div>
+    <div *ngIf="!loading && evento">
+        <div class="box2">  
+            <img class="img-box2" [src]="evento.flyer.urlPublica" alt="Flyer del evento"/>
+        </div>
+        <div class="box3">
+            <div class="box3-children">
+                <div *ngIf="eventoProximo" class="label">El evento esta proximo a comenzar</div>
+            </div>
+            <div class="box3-children1">
+                <div class="fila">
+                    <div class="fila-1">
+                        <h3>Nombre del evento</h3>
+                        <label>{{evento.nombre}}</label>
+                    </div>
+                    <div class="fila-1">
+                        <h3>Fecha inicio</h3>
+                    
+                    <label>{{evento.fechaInicio.substring(0,10)}}</label>
+                </div>
+                <div class="fila">
+                    <div class="fila-1">
+                        <h3>Organizador</h3>
+                        
+                        <label>{{evento.departamento.nombreDeDepartamento}}</label>
+                    </div>
+                    <div class="fila-1">
+                        <h3>Fecha finalización</h3>
+                    
+                        <label>{{evento.fechaFin.substring(0,10)}}</label>
+                    </div>
+                </div>
+                <div class="fila">
+                    <div class="fila-1">
+                        <h3>Modalidad</h3>
+                    
+                        <label>{{evento.tipo}}</label>
+                        
+                    </div>
+                    <div class="fila-1">
+                        <h3>Horario</h3>
+                        
+                        <label>{{evento.fechaInicio.substring(11,17)}} hs - {{evento.fechaFin.substring(11,17)}} hs</label>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box4">
+            <h3>Descripcion de evento: </h3>
+            <p>
+                {{evento.descripcion}}
+            </p>
+            <br>
+            <h1>Participantes</h1>
+        </div>
+        <div class="box5" *ngIf="evento.participantes.length!==0">
+            <div class="fila">
+                <div class="fila-1">
+                    Nombre Participante
+                </div>
+                <div class="fila-1">
+                    Empresa Participante
+                </div>
+                <div class="fila-1">
+                    Email
+                </div>
+                <!-- <div class="fila-1">
+                    Estado
+                </div> -->
+            </div>
+            <div class="users-add-dep" *ngIf="evento.participantes.length!==0">
+                <ul >
+                    <li *ngFor="let participante of listarParticipante()">
+                        <div class="row-li-users">
+                            <div class="fila">
+                                <div class="fila-2">
+                                    <p>{{participante.nombre}} {{participante.apellido}}</p>
+                                </div>
+                                <div class="fila-2">
+                                    {{participante.organizacion}}
+                                </div>
+                                <div class="fila-2">
+                                    {{participante.email}}
+                                </div>
+                                <!-- <div class="fila-3">
+                                    <div class="fila-3-1" [ngClass]="getClasePorEstado(participante.estado)">{{participante.estado}}</div>
+                                </div> -->
+                                <!-- <div class="fila-3">
+                                    <span class="material-icons" type="button" >visibility</span>
+                                    <span class="material-icons" type="button" (click)="eliminarParticipante(usuario.nombre)">cancel</span>
+                                </div> -->
+                            </div>
+
+                            
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mensaje-participantes" *ngIf="evento.participantes.length===0">
+            <span>No hay participantes en este evento</span>
+        </div>
+    </div>
+    <app-loading *ngIf="loading"></app-loading>
+</div>

@@ -1,0 +1,251 @@
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto">
+    <div>
+        <h1 class="flex w-full mx-auto bg-ligth-blue text-dark-blue font-Monserrat font-extrabold text-2xl pl-2 py-6 justify-center">
+          Gestion de Eventos
+        </h1>
+    </div>
+</div>
+<br>
+<!--Zona del formulario-->
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto" >
+    <div class="back-container mb-3">
+        <a href="/eventos" class="btn btn-copal"> Regresar</a>    
+    </div>
+
+    <div class="container-title">
+        <h1 class="flex w-full mx-auto font-Monserrat  justify-center title-form">
+          Agregar Evento
+        </h1>
+    </div>
+
+    <!--FORMULARIO DE CREAR EVENTO-->
+    <form [formGroup]="eventoForm" (ngSubmit)="enviarFormulario()">
+        <div class="container-formulario">
+            <br>
+            <div class="detalles-evento">
+                <!--primera linea NOMBRES-->
+                <div class="row-input">
+                    <div class="row-middle">
+                        <label  class="text-nowrap size-text-23 font-Monserrat">* Nombre del Evento:</label>
+                        <input type="text" class=" size-text-23 space-total copal-custom font-Monserrat" formControlName="nombre" placeholder="Nombre del Evento" >
+                    </div>
+                    <div class="row-middle">
+                        <label class="text-nowrap size-text-23 font-Monserrat">* Organizador:</label>
+                        <select class=" size-text-23 space-total copal-custom font-Monserrat" formControlName="departamento">
+                            <option *ngFor="let dep of opcionesDepartamentos; let i = index" [value]="dep.id" class="option-select size-text-23 font-Monserrat">{{dep.nombre}}</option>  
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="(eventoForm.get('nombre')?.hasError('required') && eventoForm.get('nombre')?.touched) || (eventoForm.get('departamento')?.hasError('invalidDepartamento') && eventoForm.get('departamento')?.touched)" class="row-input">
+                    <p class="row-middle text-danger"><span *ngIf="eventoForm.get('nombre')?.hasError('required') && eventoForm.get('nombre')?.touched">El nombre es requerido.</span> </p>
+                    <p class="row-middle text-danger"><span *ngIf="eventoForm.get('departamento')?.hasError('invalidDepartamento') && eventoForm.get('departamento')?.touched">Debe seleccionar un Departamento.</span></p>
+                </div>
+                <!--segunda linea FECHAS-->
+                <div class="row-input">
+                    <div class="row-middle">
+                        <label  class="text-nowrap size-text-23 font-Monserrat">* Fecha de inicio:</label>
+                        <input type="date" class=" size-text-23 space-total copal-custom font-Monserrat" formControlName="fechaInicio">
+                    </div>
+                    <div class="row-middle">
+                        <label  class="text-nowrap size-text-23 font-Monserrat">* Fecha finalización:</label>
+                        <input type="date"  class=" size-text-23 space-total copal-custom font-Monserrat" formControlName="fechaFin">
+                    </div>
+                </div>
+                <div *ngIf="(eventoForm.get('fechaInicio')?.hasError('required') && eventoForm.get('fechaInicio')?.touched) || (eventoForm.get('fechaFin')?.hasError('required') && eventoForm.get('fechaFin')?.touched) || (eventoForm.get('fechaFin')?.hasError('invalidFechaFin'))" class="row-input">
+                    <p class="row-middle text-danger"><span *ngIf="eventoForm.get('fechaInicio')?.hasError('required') && eventoForm.get('fechaInicio')?.touched">Fecha de Inicio es requerido.</span></p>
+                    <p class="row-middle text-danger">
+                        <span *ngIf="eventoForm.get('fechaFin')?.hasError('required') && eventoForm.get('fechaFin')?.touched">Fecha de Fin es requerido.</span>
+                        <span *ngIf="eventoForm.get('fechaFin')?.hasError('invalidFechaFin')">La fecha de Fin debe ser mayor.</span></p>
+                </div>
+                <!--tercera linea HORARIOS-->
+                <div class="row-input">
+                    <div class="row-middle">
+                        <label  class="text-nowrap size-text-23 font-Monserrat">* Hora Inicio:</label>
+                        <select class=" size-text-23 space-total copal-custom font-Monserrat" formControlName="horaInicio">
+                            <option *ngFor="let tiempo of generarTiempos(); let i = index" [value]="tiempo" [disabled]="i===0">{{ i === 0 ? tiempo : tiempo.substring(0,5) }}</option>
+                        </select>
+                    </div>
+                    <div class="row-middle">
+                        <label  class="text-nowrap size-text-23 font-Monserrat">* Hora finalización:</label>
+                        <select class=" size-text-23 space-total copal-custom font-Monserrat" formControlName="horaFin">
+                            <option *ngFor="let tiempo of generarTiempos(); let i = index" [value]="tiempo" [disabled]="i===0">{{ i === 0 ? tiempo : tiempo.substring(0,5) }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="(eventoForm.get('horaInicio')?.hasError('required') && eventoForm.get('horaInicio')?.touched) || (eventoForm.get('horaFin')?.hasError('required') && eventoForm.get('horaFin')?.touched) || (eventoForm.get('horaFin')?.hasError('invalidHoraFin')) || (eventoForm.get('horaInicio')?.hasError('invalidHoraInicio'))" class="row-input">
+                    <p class="row-middle text-danger">
+                        <span *ngIf="(eventoForm.get('horaInicio')?.hasError('required') && eventoForm.get('horaInicio')?.touched)">La hora de Inicio es requerida.</span>
+                        <span *ngIf="eventoForm.get('horaInicio')?.hasError('invalidHoraInicio')">La hora de Inicio debe ser menor</span>
+                    </p>
+                    <p class="row-middle text-danger">
+                        <span *ngIf="(eventoForm.get('horaFin')?.hasError('required') && eventoForm.get('horaFin')?.touched)">La hora de Inicio es requerida.</span>
+                        <span *ngIf="eventoForm.get('horaFin')?.hasError('invalidHoraFin')">La hora de Inicio debe ser mayor</span>                        
+                    </p>
+                </div>
+                <!--CARGA DE LA IMAGEN-->
+                <div class="container-imagen">
+                    <button class="btn btn-copal"> CARGAR IMAGEN DEL EVENTO </button>
+                </div>
+                <!--Carga de la descripcion-->
+                <div class="container-descripcion">
+                    <label class="text-nowrap size-text-23 font-Monserrat">* Descripcion:</label>
+                    <textarea rows="3" class="size-text-23 font-Monserrat descripcion-copal" placeholder="Escribe algo aquí...">
+                    </textarea>
+                </div>
+                <div *ngIf="false" class="row-input">
+                    <p class="row-middle text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!--DONDE SE REALIZARA EL EVENTO-->
+        <div class="container-title">
+            <h1 class="flex w-full mx-auto font-Monserrat  justify-center title-form">
+            Lugar del Evento
+            </h1>
+        </div>
+        <br>
+        <!--Modalidad del evento-->
+        <div class="container-ubicacion">
+            <div class="row-input">
+                <div class="row-middle">
+                    <label class="text-nowrap size-text-23 font-Monserrat">* Modalidad:</label>
+                    <select class=" size-text-23 space-total copal-custom font-Monserrat">
+                        <option *ngFor="let tipo of opcionesTipoEvento" [value]="tipo" class="option-select size-text-23 font-Monserrat" >{{tipo}}</option>
+                    </select>
+                </div>
+            </div>
+            <div *ngIf="false" class="row-input">
+                <p class="row-middle text-danger"></p>
+            </div>
+            <!--link reunion-->
+            <div *ngIf="true" class="row-input">
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">* Link Reunion:</label>
+                    <input type="url" class=" size-text-23 space-total copal-custom font-Monserrat">
+                </div>
+            </div>
+            <div *ngIf="false" class="row-input">
+                <p class="row-middle text-danger"></p>
+            </div>
+            <!--direccion del evento-->
+            <div *ngIf="true" class="container-direccion">
+                <div class="row-input">
+                    <div class="row-middle">
+                        <label  class="text-nowrap size-text-23 font-Monserrat">* Provincia:</label>
+                        <select class=" size-text-23 space-total copal-custom font-Monserrat" >
+                            <option *ngFor="let prov of opcionesProvincias; let i = index" [value]="prov.id" class="option-select size-text-23 font-Monserrat">{{prov.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="row-middle">
+                        <label class="text-nowrap size-text-23 font-Monserrat">* Localidad:</label>
+                        <select class=" size-text-23 space-total copal-custom font-Monserrat">
+                            <option *ngFor="let loc of opcionesLocalidades" [value]="loc.id" class="option-select size-text-23 font-Monserrat">{{loc.nombre}}</option>
+                        </select>
+                    </div>
+                </div> 
+                <div *ngIf="false" class="row-input">
+                    <p class="row-middle text-danger"></p>
+                    <p class="row-middle text-danger"></p>
+                </div>
+
+                <div class="row-input">
+                    <div class="row-middle">
+                        <label  class="text-nowrap size-text-23 font-Monserrat">* Calle:</label>
+                        <input type="text" class=" size-text-23 space-total copal-custom font-Monserrat" >
+                    </div>
+                    <div class="row-middle">
+                        <label  class="text-nowrap size-text-23 font-Monserrat">* Altura:</label>
+                        <input type="number" class=" size-text-23 space-total copal-custom font-Monserrat" >
+                    </div>
+                </div>  
+                <div *ngIf="false" class="row-input">
+                    <p class="row-middle text-danger"></p>
+                    <p class="row-middle text-danger"></p>
+                </div>
+                <div class="row-input">
+                    <div class="row-middle">
+                        <label  class="text-nowrap size-text-23 font-Monserrat">Nro. Piso:</label>
+                        <input type="number" class=" size-text-23 space-total copal-custom font-Monserrat">
+                    </div>
+                    <div class="row-middle">
+                        <label  class="text-nowrap size-text-23 font-Monserrat">Codigo Postal:</label>
+                        <input type="number" class=" size-text-23 space-total copal-custom font-Monserrat">
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+        </div>
+        <br>
+        <br>
+        <div class="container-send">
+            <div class="container-actions">
+                <button class="btn btn-copal-2 custom-send" type="submit">CREAR EVENTO</button>
+                <button class="btn btn-copal custom-send" (click)="redireccionar('/eventos')" >CANCELAR</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br>
+<br>
+<!-- SECCION DEL MODAL -->
+<!-- Button trigger modal--> 
+
+
+    <div *ngIf="showModal" class="modal fade centered-modal" tabindex="-1" aria-labelledby="exampleModalLabel" [ngClass]="{ 'show visibleModal': showModal }">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-bold size-text-23 font-Monserrat" id="exampleModalLabel">El evento está listo</h1>
+            <button type="button" class="btn-close-copal" (click)="ocultarModal()" aria-label="Close">X</button>
+          </div>
+          <div class="modal-body center-info">
+            <div class="center-body">
+                <p class="size-text-23 font-Monserrat text-center">Comparte este vinculo con otras personas que quieres que participen en ella.</p>
+                
+                <div class="input-group row-input-copy">
+                    <input type="text" [value]="urlInvitacion" class="adaptarse size-text-23 font-Monserrat text-link">
+                    <span class="material-icons" type="button" (click)="copiarPortapapeles()">content_copy</span>
+                </div>
+                <p *ngIf="textoCopiado!==''">{{textoCopiado}}</p>
+                
+                <p class="size-text-23 font-Monserrat text-center">Las personas que usen este vínculo de reunión deben obtener tu permiso para unirse a ella.</p>                
+                <button class="btn btn-copal" >Ver Evento</button>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div *ngIf="false" class="modal fade centered-modal" tabindex="-1" aria-labelledby="exampleModalLabel" [ngClass]="{ 'show visibleModal': false }">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-bold size-text-23 font-Monserrat" id="exampleModalLabel">El evento está listo</h1>
+                <button type="button" class="btn-close-copal" (click)="ocultarModal()" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body center-info">
+                <div class="center-body">
+                    <p class="size-text-23 font-Monserrat text-center">Comparte este vinculo con otras personas que quieres que participen en ella.</p>
+                    
+                    <div class="input-group row-input-copy">
+                        <input type="text" [value]="urlInvitacion" class="adaptarse size-text-23 font-Monserrat text-link">
+                        <span class="material-icons" type="button" (click)="copiarPortapapeles()">content_copy</span>
+                    </div>
+                    <p *ngIf="textoCopiado!==''">{{textoCopiado}}</p>
+                    
+                    <p class="size-text-23 font-Monserrat text-center">Las personas que usen este vínculo de reunión deben obtener tu permiso para unirse a ella.</p>                
+                </div>
+    
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>    

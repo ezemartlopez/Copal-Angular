@@ -1,0 +1,86 @@
+
+/* .grid-box{
+    display: grid;
+    grid-template-columns: repeat(4,24%);
+}
+.grid-box>div{
+    border: 1px solid rgb(228, 228, 228);
+    padding: 10px;
+}
+/* Estilos CSS */
+/* .custom-mat-form-field {
+   width: 250px;
+   
+}
+
+::ng-deep .mat-primary{
+    background-color:  #ffffff;
+ }
+::ng-deep .mat-primary .mat-mdc-select-arrow{
+   color: #67B4C0;
+}
+::ng-deep .mat-primary .mat-mdc-option:hover:not(.mdc-list-item--disabled),
+::ng-deep .mat-primary .mat-mdc-option:focus:not(.mdc-list-item--disabled){
+    background-color: #67B4C0;
+} */ 
+*:not(.material-icons) {
+    font-family: "Montserrat";
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 1000px;
+    
+}
+.container .box{
+    display: grid;
+    grid-template-rows: 50px;
+   
+}
+.container .box .filaFiltro{
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(4,23%)
+}
+.container .box .filaFiltro .caja-input{
+    
+    border-bottom: 1px solid #67B4C0;
+}
+.container .box .filaFiltro .caja-input:hover{
+    color: #67B4C0;
+  }
+.custom-option{
+    color: #67B4C0;
+}
+.search-input{
+    border-bottom: 1px solid #67B4C0;
+}
+.container .box .filaCard{
+   display: grid;
+   margin-top: 50px;
+}
+
+.container .box1{
+    display: grid;
+    grid-template-columns: repeat(3,33.0%); 
+}
+
+.header-title-page{
+    background-color: #67B4C0;
+    color: #283549;
+    font-size: 23px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+.header-title{
+    background-color: #283549;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+}
+.container-box{
+    width: 100%;
+}

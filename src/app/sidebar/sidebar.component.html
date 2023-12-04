@@ -1,0 +1,60 @@
+<aside
+  id="sidebar"
+  class="flex flex-col w-60 -translate-x-[200%] fixed h-full transition-transform duration-200  text-white pt-4 z-50 copal"
+>
+<!--class="flex flex-col w-72 h-full transition-transform duration-200  text-white pl-4 pt-4 z-50 copal"-->
+<div class="flex flex-col items-center w-full mt-[80px] ">
+  <a 
+          routerLink="/"
+          routerLinkActive="active"
+          class="flex flex-row items-center w-full h-12 pl-6 pr-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" >
+    <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+    </svg>
+    <span class="ml-4 text-m font-normal">Inicio</span>
+  </a>
+  <a 
+          routerLink="/gestion-de-socios"
+          routerLinkActive="active" 
+          class="flex flex-row items-center w-full h-12 pl-6 pr-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 10h2a2 2 0 0 1 2 2v1"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 13v-1a2 2 0 0 1 2 -2h2"></path>
+            </svg>
+    <span class="ml-4 text-m font-normal">Socios</span>
+  </a>
+  <a 
+          routerLink="/departamentos"
+          routerLinkActive="active"
+          class="flex flex-row items-center w-full h-12 pl-6 pr-3 mt-2 hover:text-gray-200 hover:bg-gray-700 rounded" >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-diagram-2" viewBox="0 0 16 16">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567zM7.5 9.933l-2.75 1.571v3.134l2.75-1.571zm1 3.134 2.75 1.571v-3.134L8.5 9.933zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134zM5.258 2.643 8 4.21l2.742-1.567L8 1.076zM15 9.933l-2.75 1.571v3.134L15 13.067zM3.75 14.638v-3.134L1 9.933v3.134z"/>
+                </svg>
+    <span class="ml-4 text-m font-normal">Departamentos</span>
+  </a>
+  <a 
+          routerLink="/eventos"
+          routerLinkActive="active"
+          class="flex flex-row items-center w-full h-12 pl-6 pr-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+              </svg>
+    <span class="ml-4 text-m font-normal">Eventos</span>
+  </a>
+          <a 
+          routerLink="/espacios-colaborativos"
+          routerLinkActive="active"
+          class="flex flex-row items-center w-full h-12 pl-6 pr-3 mt-2 hover:text-gray-200 hover:bg-gray-700 rounded" >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3" />
+                </svg>
+                
+    <span class="ml-4 text-m font-normal">Espacios colaborativos</span>
+  </a>
+</div>
+</aside>

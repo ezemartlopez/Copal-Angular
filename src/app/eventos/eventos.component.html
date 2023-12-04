@@ -1,0 +1,75 @@
+<div class="relative max-w-[1126px] mx-auto">
+  <nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb ml-2 mb-0">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Eventos</li>
+    </ol>
+  </nav>
+    <div class="container-box">
+        <h1 class="header-title-page">
+          Gestion de Eventos
+        </h1>
+    </div>
+    <div class="container-buttons mt-3 mb-3">
+      <a href="/eventos/crear-evento" class="btn btn-copal-d">Agregar Evento</a>    
+    </div>
+      <!--ZONA FILTRO-->
+  <div class="container-filter" >
+    <div class="container-select">
+      <select class="form-select" [(ngModel)]="selectDepartamento">
+        <option [value]="0" selected>Por departamento</option>
+        <option *ngFor="let dep of opcionesDepartamentos" [value]="dep.id">{{dep.nombre}}</option>
+      </select>
+    </div>
+    <div class="container-select">
+      <select class="form-select" [(ngModel)]="selectModalidad">
+        <option value="Por Modalidad" selected>Por modalidad</option>
+        <option *ngFor="let mod of opcionesTipoEvento" [value]="mod">{{mod}}</option>
+      </select>
+    </div>
+    <div class="container-select">
+      <select class="form-select" [(ngModel)]="selectEstado">
+        <option [value]="0" selected>Por estado</option>
+        <option *ngFor="let estado of opcionesEstados" [value]="estado.id">{{estado.nombre}}</option> 
+      </select>
+    </div>
+    <div class="container-select custom-flex">
+        <span class="btn btn-copal" (click)="resetearFiltros()">Resetear Filtros</span>
+        <span class="btn btn-copal-d" (click)="enviarFiltros()">Buscar</span>
+    </div>
+  </div>
+</div>
+
+<!--INFO CARGADA-->
+<div *ngIf="!loadding && infoCargada" class="relative max-w-[1126px] mx-auto mt-3 principal">
+  <br>
+  <!--ZONA CARDS-->
+  <p *ngIf="eventosCopal.length===0" class="text-center">No hay eventos que mostrar.</p>
+  <div class="container-cards">
+    <app-card *ngFor="let evento of eventosCopal" [infoEvento]="evento" [estados]="opcionesEstados"></app-card>
+  </div>
+
+  <!--ZONA PAGINABLE-->
+  <div class="aling-end-position" *ngIf="eventosCopal.length > 0">
+    <div class="w3-center">
+      <div class="w3-bar">
+        <a class="w3-button sig-page" *ngIf="(paginaActual + 1) > 1" type="button" (click)="llamarPagina(paginaActual - 1)">&laquo; Anterior</a>
+        <a class="w3-button actual-page">{{(paginaActual + 1)}}</a>
+        <span class="px-3">de</span>
+        <a class="w3-button">{{totalPaginas}}</a>
+        <a class="w3-button sig-page" *ngIf="(paginaActual + 1) < totalPaginas " type="button" (click)="llamarPagina(paginaActual + 1)">Siguiente &raquo;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--LOADDING DE CARGA-->
+<div *ngIf="loadding" class="relative max-w-[1126px] mx-auto">
+  <app-loading ></app-loading>
+</div>
+<!--ERROR DE CARGA DE INFORMACION-->
+<div *ngIf="!loadding && !infoCargada" class="relative max-w-[1126px] mx-auto">
+  <br>
+  <h1 class="text-center"> No se encontraron eventos para mostrar...</h1>
+</div>

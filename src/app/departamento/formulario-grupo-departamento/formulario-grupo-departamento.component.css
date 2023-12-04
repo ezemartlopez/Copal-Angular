@@ -1,0 +1,184 @@
+:root{
+    --primary:#67B4C0;
+    --secondary:#283549;
+    --red:#FF0000;
+    --white:white;
+}
+/*Estilos para el Box  */
+.box{
+    height: 100px;
+}
+/*Estilos para el Box 1 */
+.box1{
+    height: 50px;
+}
+.btn-back{
+    color: #67b4c0;
+    border: 1px solid #67b4c0;
+}
+.btn-back:hover{
+    color: white;
+    background-color: #67b4c0;
+}
+.box1 .texto{
+    color: #67B4C0;
+    text-decoration: underline;
+}
+.box1 .texto3 .simbolo{
+    color: red;
+}
+/*Estilos para el Box 2 , NOMBRE Y INPUTS*/
+.box2{
+    
+    height: 150px;
+}
+.box2 h2{
+    background-color: #283549;
+    width: auto;
+    color: white;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size:x-large;
+    height:2.3rem;
+}
+.box2  .caja-input{
+    width: 60%;
+    border: none;
+    border-bottom: 2px solid #67B4C0; 
+    
+}
+.box2  .caja-input:hover{
+    background-color: none;
+    border-bottom: 2px solid #67B4C0; 
+}
+.box2  .caja-input:focus{
+    outline: none;
+}
+.box2 h3{
+    font-size: 18px;
+    padding-right: 10px;
+    width: 10%;
+    font-weight: bold;
+}
+.box2-hijo{
+    display: flex;
+    flex-direction: row;
+}
+/*Estilos para el Box 3 */
+
+.box3{
+   height: 320px;
+}
+
+.box3 h2{
+    background-color: #283549;
+    padding-top: 1px;
+    width: auto;
+    color: white;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size:x-large;
+    height:2.3rem;
+    font-weight: bold;
+}
+.users-add-dep{
+    width: 100%;
+    height: 80px;
+    overflow-y: scroll;
+}
+.row-li-users{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.row-li-users > span{
+    width: 300px;
+}
+.box3  .caja-input{
+    width: 60%;
+    border: none;
+    border-bottom: 2px solid #67B4C0; 
+    
+}
+.box3  .caja-input:hover{
+    background-color: none;
+    border-bottom: 2px solid #67B4C0; 
+}
+.box3  .caja-input:focus{
+    outline: none;
+}
+.box3 h3{
+    font-size: 18px;
+    padding-right: 10px;
+    width: 15%;
+    font-weight: bold;
+}
+.box3-hijo{
+    display: flex;
+    flex-direction: row;
+}
+/* Estilo para las opciones del menú desplegable */
+.caja-input option{
+ color:#67B4C0;
+}
+.caja-input option:hover{
+    background-color: #c0e1e6fd;
+}
+/*Estilos para el Box 4 */
+.box4{
+    height:50px;
+    
+    padding-left: 165px;
+    
+}
+.box4-hijo{
+    display: flex;
+    flex-direction:row;
+    width: 250px;
+    border: solid 1px #67B4C0;
+}
+.box4-hijo:hover{
+    background-color:#ebfcffd2;
+    color: white;
+}
+
+.icono{
+    height: 25px;
+    width: 25px; 
+}
+.box4 button{
+    padding-left: 10px;
+    height:25px;
+    width: auto;
+    color: #67B4C0;
+}
+/*Estilos para el Box 5 */
+.box5{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+/*Estilos para los botonesa AGREGAR CANCELAR */
+.btnAgregar{
+    width: 140px;
+    background-color:#67B4C0;
+    color: white;
+}
+.btnCancelar{
+    margin-left: 10px;
+    width: 140px;
+    border: solid 1px #67B4C0;
+    color: #67B4C0;
+}
+.btnCancelar:hover{
+    color: white;
+    background-color: #67B4C0;
+}
+.btnAgregar:hover{
+    color: #67B4C0;
+    background-color: white;
+    border: solid 1px #67B4C0;
+}
+

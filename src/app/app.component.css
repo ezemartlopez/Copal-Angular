@@ -1,0 +1,8 @@
+.mat-drawer-opened {
+    position: fixed!important;
+    top:5rem
+}
+
+.copal-margen{
+    margin-left: 18rem;
+}

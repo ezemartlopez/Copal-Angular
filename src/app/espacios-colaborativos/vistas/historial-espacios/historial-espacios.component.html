@@ -1,0 +1,48 @@
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto">
+    <div>
+        <h1 class="flex w-full mx-auto bg-ligth-blue text-dark-blue font-Monserrat font-extrabold text-2xl pl-2 py-6 justify-center">
+          Gestion de Espacios Colaborativos
+        </h1>
+    </div>
+
+</div>
+
+<br>
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto mt-3">
+    <div class="w3-bar custom-bar">
+        <button *ngFor="let espacio of espacios; let i = index" class="w3-bar-item w3-button custom-bar-item" [id]="espacio.id" (click)="cambiarEspacio(espacio.id)" type="button">{{espacio.nombre}}</button>
+    </div>    
+</div>
+
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto mt-3">
+  <p class="message-info" *ngIf="espacioActual===0">Seleccione un espacio..</p>
+  <div *ngIf="!loadding">
+  <div *ngFor="let info of InfoEspacios">
+    <div *ngIf="espacioActual===info.espacio.id">
+      <p *ngIf="info.reservas.length === 0" class="message-info">No hay historial de uso de {{info.espacio.nombre}}</p>
+      <table *ngIf="info.reservas.length !== 0" class="table table-hover">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Responsable</th>
+            <th>Email</th>
+            <th>Descripcion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reserva of info.reservas">
+            <td>{{modificarFecha(reserva.fechaCreacion) }}</td>
+            <td>{{modificarHorario(reserva.horaInicio, reserva.horaFin)}}</td>
+            <td>{{reserva.responsable.nombreCompleto}}</td>
+            <td>{{reserva.responsable.mail}}</td>
+            <td>{{reserva.descripcion}}</td>
+          </tr>
+        </tbody>
+      </table>       
+    </div>
+   
+  </div>
+
+  </div>
+</div>

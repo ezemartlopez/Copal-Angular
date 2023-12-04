@@ -1,0 +1,12 @@
+.copal{
+    background-color: #221d4c;
+}
+
+.copal-sidebar {
+    
+    position: fixed;
+    left : 0;
+    display: block !important;
+    height: calc(100vh - 5rem);    
+}
+

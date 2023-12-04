@@ -1,0 +1,39 @@
+<div class="conteiner-cards">
+    <div class="w3-card-4 card">
+        <header class="w3-container w3-white card-header">
+          <h2>Nro. Reserva: {{infoReservas.id}} </h2>
+          <h2>Espacio: {{infoReservas.espacioFisico.nombre}} </h2>
+        </header>
+        
+        <div class="w3-container card-descripcion">
+          <div class="fecha">
+            <img src="../../../../../assets/logos/calendar.jpg"/>
+            <p id="fecha">{{fechaFormateada}}</p>
+          </div>
+          <div class="hora">
+            <img src="../../../../../assets/logos/clock.jpg"/>
+            <p>{{infoReservas.horaInicio.substring(0,5)}}-{{infoReservas.horaFin.substring(0,5)}}</p>
+          </div>
+          <div class="personaCargo">
+            <img src="../../../../../assets/logos/user.jpg" />
+            <p>{{infoReservas.responsable.nombreCompleto}}</p>
+          </div>
+        </div>
+         
+        <footer class="w3-container w3-white card-footer">
+            <div class="estado" >
+                <div class="estado-var" [ngClass]="getClasePorEstado(infoReservas.estadoActual.estado.id)" >
+                    <p>{{infoReservas.estadoActual.estado.nombre}}</p>
+                </div>
+            </div> 
+            <div class="footerIconos">
+                <img src="../../../../../assets/logos/seenbtn.png" alt="logo_view" class="icon-option" type="button" (click)="abrirModal()">
+                <img src="../../../../../assets/logos/editbtn.png" alt="logo_edit" class="icon-option" type="button" (click)="abrirModalEdit()" >
+                <img src="../../../../../assets/logos/trashbtn.png" alt="logo_trash" class="icon-option" type="button"(click)="abrirModalDelete()">
+            </div>
+            <app-edit-modal [showModalEdit]="mostrarModalEdit" (closeModal)="cerrarModalEdit()" [infoReservas]="infoReservas"></app-edit-modal>
+            <app-view-modal  [showModal]="mostrarModal" (closeModal)="cerrarModal()" [infoReservas]="infoReservas"></app-view-modal>
+            <app-delete-modal [showModalDelete]="mostrarModalDelete" (closeModal)="cerrarModalDelete()" [infoReservas]="infoReservas"></app-delete-modal>
+          </footer>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+/* Estilos para el modal con fondo transparente */
+.modal-transparente {
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo con transparencia */
+  }
+  
+.btn-close-modal{
+  border: solid 1px rgb(49, 49, 49);
+}
+.btn-close-modal:hover{
+  background-color: rgb(189, 186, 186);
+}

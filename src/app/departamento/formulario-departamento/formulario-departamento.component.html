@@ -1,0 +1,187 @@
+<div class="relative max-w-[1126px] mx-auto">
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb ml-2 mb-0">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active"><a href="/departamentos">Gestion de departamentos</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Crear SubDepartamento</li>
+        </ol>
+    </nav>
+    <div>
+        <h1 class="header-title-page">
+          Gestion de Departamentos 
+        </h1>
+    </div>
+    <div class="container-box mb-3">
+            <button class="btn btn-back" onclick="retroceder()"> Regresar</button>
+    </div>
+</div>
+<div class="relative max-w-[1126px] mx-auto">
+    <div class="container-box">
+       <p class="header-title">Datos del Departamento</p> 
+    </div>
+    <div class="container-form-dep">
+        <!--ZONA IMAGEN-->
+        <div class="image-dep">
+            <div class="image-upload-container">
+                <label for="image-input" class="image-upload-label">
+                  <img *ngIf="icono" [src]="getSelectedImageURL()" class="uploaded-image">
+                  <div class="camera-icon">
+                    <i class="material-icons">photo_camera</i> <!-- Puedes usar un icono de cámara FontAwesome o similar -->
+                  </div>
+                </label>
+                <input type="file" id="image-input" (change)="onFileSelected($event)" accept="image/*">
+            </div>
+        </div>
+        <!--ZONA SUBDEPARTAMENTO-->
+        <div class="container-box custom-box">
+            <div class="row mb-3">
+                <!--Seleccion del espacio-->
+                <div class="col-12">
+                    <div class="input-group custom-group mb-1">
+                        <label class="input-group-text custom-label">Grupo: </label>
+                        <input type="text" class="form-control custom-input" [value]="nombreGrupo" disabled>                   
+                    </div> 
+                </div>
+            </div>
+            <div class="row mb-3">
+                <!--Seleccion del espacio-->
+                <div class="col-12">
+                    <div class="input-group custom-group mb-1">
+                        <label class="input-group-text custom-label">* Nombre: </label>
+                        <input type="text" class="form-control custom-input" [(ngModel)]="formulario.campos['nombreDeDepartamento'].valorInicial" (blur)="formulario.campos['nombreDeDepartamento'].fieldTouched()">                   
+                    </div>
+                    <div *ngIf="formulario.tieneErrores('nombreDeDepartamento')" class="alert alert-danger" role="alert">
+                        {{formulario.validarCampos()['nombreDeDepartamento']}}
+                    </div>  
+                </div>
+            </div>
+            <div class="row mb-3">
+                <!--Seleccion del espacio-->
+                <div class="col-12">
+                    <div class="input-group custom-group mb-1">
+                        <label class="input-group-text custom-label">* Descripción: </label>
+                        <input type="text" class="form-control custom-input" [(ngModel)]="formulario.campos['descripcion'].valorInicial" (blur)="formulario.campos['descripcion'].fieldTouched()">                   
+                    </div>
+                    <div *ngIf="formulario.tieneErrores('descripcion')" class="alert alert-danger" role="alert">
+                        {{formulario.validarCampos()['descripcion']}}
+                    </div>  
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+<div class="relative max-w-[1126px] mx-auto">
+    <div class="container-box">
+        <p class="header-title">Autoridades del Departamento</p>   
+    </div>
+    <div class="users-add-dep">
+        <ul>
+            <li class="mb-2" *ngFor="let autoridad of listaAutoridades">
+                <div class="row-li-users">
+                    <span><strong>Usuario: </strong>{{buscarUsuarioPorId(autoridad.usuarioId)}}</span>
+                    <span><strong>Rol Asignado: </strong>{{buscarRolPorId(autoridad.rolId)}}</span>
+                    <span class="material-icons" type="button" (click)="eliminarUsuarioPorIdYRol(autoridad.usuarioId, autoridad.rolId)">cancel</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <hr>
+    <div class="container-box mt-3">
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="input-group custom-group mb-1">
+                    <label class="input-group-text custom-label">* Usuario: </label>
+                    <select class="form-select custom-select" [(ngModel)]="autoridades.campos['usuarioId'].valorInicial" (blur)="autoridades.campos['usuarioId'].fieldTouched()">
+                        <option selected value="0" disabled>NINGUNO</option>
+                        <option *ngFor="let user of usuarios" [value]="user.id">{{user.nombre}}</option>
+                    </select>                    
+                </div>
+                <div *ngIf="autoridades.tieneErrores('usuarioId')" class="alert alert-danger" role="alert">
+                    {{autoridades.validarCampos()['usuarioId']}}
+                </div>
+            </div>
+    
+            <div class="col-6">
+                <div class="input-group custom-group mb-1">
+                    <label class="input-group-text custom-label">* Tipo Rol:</label>
+                    <select class="form-select custom-select" [(ngModel)]="autoridades.campos['rolId'].valorInicial" (blur)="autoridades.campos['rolId'].fieldTouched()">
+                        <option *ngFor="let rol of roles; let i = index" [value]="rol.id" [disabled]="i===0">{{rol.rol}}</option>
+                    </select>                    
+                </div>
+                <div *ngIf="autoridades.tieneErrores('rolId')" class="alert alert-danger" role="alert">
+                    {{autoridades.validarCampos()['rolId']}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-copal btn-content" style="width: 300px;" (click)="agregarAutoridad()">
+        <i class="material-icons">add_circle_outline</i><span>AGREGAR AUTORIDAD</span>
+    </button>
+    <!--Zona de Usuarios-->
+    <div class="container-box mt-3">
+        <p class="header-title">Usuarios del Departamento</p>   
+    </div>
+    <div class="users-add-dep">
+        <ul>
+            <li class="mb-2" *ngFor="let usuario of listaUsuarios">
+                <div class="row-li-users">
+                    <span><strong>Usuario: </strong>{{buscarUsuarioPorId(usuario)}}</span>
+                    <span class="material-icons" type="button" (click)="eliminarUsuarioPorId(usuario.usuarioId)">cancel</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <hr>
+    <div class="container-box mt-3">
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="input-group custom-group mb-1">
+                    <label class="input-group-text custom-label">* Usuario: </label>
+                    <select class="form-select custom-select" [(ngModel)]="usuariosForm.campos['usuarioId'].valorInicial" (blur)="usuariosForm.campos['usuarioId'].fieldTouched()">
+                        <option selected value="0" disabled>NINGUNO</option>
+                        <option *ngFor="let user of usuarios" [value]="user.id">{{user.nombre}}</option>
+                    </select>                    
+                </div>
+                <div *ngIf="usuariosForm.tieneErrores('usuarioId')" class="alert alert-danger" role="alert">
+                    {{usuariosForm.validarCampos()['usuarioId']}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-copal btn-content" style="width: 300px;" (click)="agregarUsuario()">
+        <i class="material-icons">add_circle_outline</i><span>AGREGAR USUARIO</span>
+    </button>
+    <!--Fin zona de usuarios-->
+    <div class="container-box container-buttons mt-3">
+        <button type="button" class="btn btn-copal" onclick="retroceder()">CANCELAR</button>
+        <button type="button" class="btn btn-copal-active" (click)="enviarFormularioGrupo()">AGREGAR GRUPO</button>
+    </div>
+
+</div>
+<div *ngIf="showModal" class="modal fade centered-modal" tabindex="-1" aria-labelledby="exampleModalLabel" [ngClass]="{ 'show visibleModal': showModal }">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-bold size-text-23 font-Monserrat" id="exampleModalLabel">Solicitud Para Crear Subdepartamento</h1>
+          <button type="button" class="btn-close-copal" (click)="ocultarModal()" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body center-info">
+          <div *ngIf="exitoEnvio" class="center-body">
+              <div class="centered">
+                 <img src="/assets/logos/exito.png" alt="logo_exito" class="icono_exito">  
+              </div>
+              <p class="text-message">Se ha creado el Subdepartamento con exito.</p>
+          </div>
+          <div *ngIf="fallaEnvio" class="center-body">
+            <div class="centered">
+               <img src="/assets/logos/alert-triangle.png" alt="logo_exito" class="icono_exito">  
+            </div>
+            <p class="text-message">Ocurrio un error al crear el Subdepartamento.</p>
+        </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>

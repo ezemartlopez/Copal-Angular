@@ -1,0 +1,68 @@
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb ml-2 mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <!--<li class="breadcrumb-item active"><a href="/eventos">Eventos</a></li>-->
+        <li class="breadcrumb-item active" aria-current="page">Gestion de Espacios Colaborativos</li>
+      </ol>
+  </nav>
+  <div class="container-box">
+      <h1 class="header-title-page">
+        Gestion de Espacios Colaborativos
+      </h1>
+  </div>
+  <!-- Zona Filtros -->
+  <!-- <div class="grid-box">
+    <mat-form-field class="custom-mat-form-field" color="primary" >
+      <mat-label>Favorite food</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of foods" [value]="food.value">{{ food.viewValue }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="custom-mat-form-field" color="primary" >
+      <mat-label>Favorite food</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of foods" [value]="food.value">{{ food.viewValue }}</mat-option>
+      </mat-select>
+    </mat-form-field >
+    <mat-form-field class="custom-mat-form-field" color="primary">
+      <mat-label>Favorite food</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of foods" [value]="food.value">{{ food.viewValue }}</mat-option>
+      </mat-select>
+    </mat-form-field >
+    <mat-form-field class="custom-mat-form-field" color="primary">
+      <mat-label>Favorite food</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of foods" [value]="food.value">{{ food.viewValue }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div> -->
+  <div class="container">
+    <div class="box">
+      <!-- <a clas="linkBack" href="">Regresar</a> -->
+      <!-- <div class="filaFiltro">
+        <select class="w3-select input-custom caja-input" name="rol-user">
+          <option disabled selected  class="custom-option">Selecciona un rol</option>
+          <option *ngFor="let elemento of opcionesTipoReserva; let i=index" [ngValue]="elemento" class="custom-option">{{elemento.viewValue}}</option>
+        </select> 
+        <select class="w3-select input-custom caja-input" name="rol-user">
+          <option disabled selected value="" class="custom-option">Selecciona un rol</option>
+          <option *ngFor="let elemento of opcionesTipoReserva; let i=index" [ngValue]="elemento" class="custom-option">{{elemento.viewValue}}</option>
+        </select> 
+        <select class="w3-select input-custom caja-input" name="rol-user">
+          <option disabled selected value="" class="custom-option">Selecciona un rol</option>
+          <option *ngFor="let elemento of opcionesTipoReserva; let i=index" [ngValue]="elemento" class="custom-option">{{elemento.nombre}}</option>
+        </select> 
+          <input type="text" placeholder="Buscar.." class="search-input"/>
+      </div> -->
+      <div class="filaCard">
+
+      </div>
+    </div>
+    <div class="box1">
+      <app-card-reservas *ngFor="let reserva of reservasCopal" [infoReservas]="reserva" ></app-card-reservas>
+    </div>
+   
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div *ngIf="gruposDep.length !== 0">
+<div class="container-table">
+    <table class="table">
+      <thead class="row-container-line">
+        <tr class="custom-table-header row-container">
+          <th class="row-data-info">Grupos departamentales</th>
+          <th class="row-middle"></th>
+          <th class="row-data">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="row-container-line">
+        <div class="" *ngFor="let group of gruposDep; let i = index">
+          <tr class="row-container">
+            <td class="row-data-info text-bold">{{group.nombreDeDepartamento}}</td>
+            <td class="row-middle"></td>
+            <td class="row-data">
+              <div class="container-buttons-actions">
+                <div class="container-buttons">
+                  <img src="assets/logos/view.png"  alt="icono-ver" (click)="group.cambiarEstado()">
+                  <img src="assets/logos/edit.png"  alt="icono-edit" (click)="redirrecionar('departamentos/editar-grupo/' + group.id)">
+                  <img src="assets/logos/trash.png" alt="icono-delete" type="button" data-bs-toggle="modal" data-bs-target="#id_modal_delete" (click)="seleccionaGrupo(gruposDep[i])">
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr class="row-container-line" *ngIf="group.mostrar">
+            <td class="row-container-toggle">
+              <!--INFORMACION DEL DEPARTAMENTO-->
+              <div class="group-info-container">
+                <div class="container-group-description">
+                  <p>{{group.descripcion}}</p>
+                </div>
+                <div class="container-group-authorities">
+                    <div class="container-authorities">
+                        <p class="authorities-title">AUTORIDADES</p>
+                        <div class="authorities-line" *ngFor="let autoridad of group.autoridades">
+                          <p class="authorities-rol">{{autoridad.rol}}</p>
+                          <p class="authorities-name">{{autoridad.nombre}}</p>  
+                        </div>
+                
+                    </div>
+                </div>
+              </div>
+              <!--ZONA DE DESPLIEGUE DE CARDS-->
+              <div class="container-cards">
+                <div class="container-adaptive-cards">
+                  <app-card-agregar [idGrupo]="group.id"></app-card-agregar>
+                  <app-card-departamento-interno *ngFor="let subDep of group.subdepartamentos" [data]="subDep" [idPadre]></app-card-departamento-interno>               
+                </div>
+              </div>
+
+            </td>
+          </tr>
+        </div>
+      </tbody>
+    </table>
+  </div>
+</div>
+            <!--MODAL PARA ELIMINAR FORMULARIO-->
+              <div class="modal fade" id="id_modal_delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel"> <strong>Eliminar Grupo</strong></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div *ngIf="grupoSelecionado" class="modal-body">
+                          <div *ngIf="!respuesta">
+                              <p class="text-center">Esta seguro de eliminar a <strong>{{grupoSelecionado.nombreDeDepartamento}}</strong></p>
+                          </div>
+                          
+                          <div *ngIf="respuesta" class="contenedor-response">
+                              <img [src]="respuesta.logo" alt="logo exito" class="img-response">
+                              <p>{{respuesta.message + grupoSelecionado.nombreDeDepartamento}}</p>
+                          </div>
+                          
+                      </div>
+      
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-cerrar" data-bs-dismiss="modal" (click)="cerrarModal()" >Cerrar</button>
+                        <button *ngIf="!seEliminoGrupo" type="button" class="btn btn-delete" (click)="eliminarGrupo()" >Eliminar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <!--FIN MODAL ELIMINAR-->
+<div *ngIf="gruposDep.length ===0">
+  <h3 class="padd-left">  No hay grupos definidos </h3>
+</div>

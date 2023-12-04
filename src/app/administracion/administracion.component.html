@@ -1,0 +1,127 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto bg-white">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ml-2 mb-0">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Gestion de socios</li>
+    </ol>
+  </nav>
+  <div>
+    <h1
+      class="flex w-full mx-auto bg-ligth-blue text-dark-blue font-Monserrat font-extrabold text-2xl py-6 justify-center"
+    >
+      Gestion de socios
+    </h1>
+  </div>
+
+    <div class="rounded-none bg-white relative overflow-x-auto pt-2">
+
+      <div class = "flex mx-auto w-full py-3 justify-between">
+          <button class = "text-white font-Monserrat bg-ligth-blue text-sm px-2 py-3 flex" (click)="agregarSocio()" >
+              AGREGAR NUEVO SOCIO
+          </button>
+
+          <!--<button class = "text-white font-Monserrat bg-ligth-blue text-sm px-2 py-3 flex" (click)="insertarUsuarioDePrueba()" >
+              Agregar usuario de prueba //SE USABA PARA INSERTAR AUTOMATICAMENTE UN USUARIO HARCODEADO SIN PASAR POR EL FORM
+          </button>-->
+
+
+          <select #teams class = "text-white font-Monserrat bg-ligth-blue text-m flex px-10" (change)="buscarPorArea(teams.value)">
+            <option default class="text-white"> Filtrar por area</option>
+            <option class="text-white" *ngFor="let area of areas" [value]="area.id">{{area.area}}</option>
+          </select>
+
+          <div class="flex justify-center">
+            <input type="text" placeholder="Buscar por nombre" id="buscar" class="form-control font-Monserrat border-1 border-ligth-blue pl-2 contrast-more:border-ligth-blue 
+            focus:border-ligth-blue focus:outline-none" [(ngModel)] = "searchText" >
+            <button class="flex justify-items-center" (click)="buscarPorNombre()">
+                <i class="fa-solid fa-magnifying-glass text-white  bg-ligth-blue px-3 py-3 h-full"></i>
+            </button>
+          </div>
+      </div>
+    </div>
+    <table class="rounded-r-none font-Monserrat w-full mx-auto overflow-hidden max-w-screen-xl">
+        <thead class="rounded-none">
+            <tr class="bg-dark-blue text-white" >
+                <th class=" text-center py-2 w-1/5">Logo del Socio</th>
+                <th class=" text-center py-2 w-1/5">Nombre</th>
+                <th class=" text-center py-2 w-1/5">Tipo de Socio</th>
+                <th class=" text-center py-2 w-1/5">Ubicacion</th>
+                <th class=" text-center py-2 w-1/5">Acciones</th>   
+            </tr>
+      </thead>
+      <tbody class="bg-white">
+        <tr ng-container *ngFor="let socio of socios" class="bg-white">
+          <td class="text-center py-2 w-1/5 ">
+            <!--<img
+              class="w-8"
+              src="assets/Icono_Activo.png"
+              alt="Icono Empresa"
+            />-->
+            <img
+              class="mx-auto h-20"
+              src="{{socio.urlLogo}}"
+              alt="Logo socio"
+            />
+            <!--{{socio.logoUrl}}-->
+            <!-- cambiar el url por {socio.logoUrl}-->
+          </td>
+          <td scope="row" class="text-center py-2 w-1/5">
+            {{ socio.nombreDeEmpresa }}
+            <!-- en algun lado lo tengo definido como nombreDeEmpresa, pero no sé dónde-->
+          </td>
+
+          <td class="text-center py-2 w-1/5">
+            {{ socio.nombreTipoSocio }}
+            <!-- lo de arriba X2, es un tema de nombres. Supongo tiene que ver con como lo trae el array de socios-->
+          </td>
+          <td class="text-center py-2 w-1/5">
+            {{ socio.ubicacion.provincia }}
+          </td>
+
+          <td class="py-2">
+            <div class="flex justify-center">
+              <button>
+                <img
+                  class="px-1"
+                  (click)="verSocio(socio.id)"
+                  src="assets/Icono_Ver.png"
+                  alt="Ver Socio"
+                />
+                <!-- redirect a otra pantalla con todos los datos-->
+              </button>
+              <button (click)="updateUser(socio.id)">
+                <img
+                  class="px-1"
+                  src="assets/Icono_Editar.png"
+                  alt="Editar Socio"
+                />
+              </button>
+              <button (click)="borrarSocio(socio.id)">
+                <img
+                  class="px-1"
+                  src="assets/Icono_Eliminar.png"
+                  alt="Eliminar Socio"
+                />
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+
+  <div
+    class="bg-white font-Monserrat text-sm flex mx-auto w-[90%] py-5 justify-between"
+  >
+    <button name="previous" (click)="cambiarPagina(false)">Previous</button>
+    <a> Estas en la página: {{ paginaActual }}</a>
+    <button name="next" (click)="cambiarPagina(true)">Next</button>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto mt-3 mb-3">
+    <img src="assets/logos/copal.png" alt="logo">
+</div>
+<br>
+<br>
+<!--Principal de ver mi formulario-->
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto mt-3">
+    <div *ngIf="!exitoBusqueda" class="container-search">
+        <h1 class="title-search">Seguimiento de reserva:</h1>
+        <input type="text" class="form-control custom-input" placeholder="Codigo de Reserva" [(ngModel)]="inputCodigo.valor" (blur)="inputCodigo.fieldTouched()">
+        <div *ngIf="inputCodigo.tieneError()" class="alert alert-danger" role="alert" style="width: 100%;">
+            {{inputCodigo.mensajeError()}}
+        </div>
+        <button *ngIf="!loadding" class="btn btn-copal" (click)="colsutarReserva()">Buscar</button>
+        <button *ngIf="loadding" class="btn btn-copal">
+            <span class="spinner-border spinner-border-sm"></span>
+            Buscando..
+          </button>
+    </div>
+
+    <!--Busqueda fallida o incorrecta-->
+    <div *ngIf="errorBusqueda" class="container-error">
+        <div class="alert alert-danger alert-dismissible fade show mt-3 display-total" role="alert">
+            <div class="d-flex display-img">
+                <img src="assets/logos/alert-triangle.png" alt="logo error" class="custom-img">
+                <strong>Codigo de Reserva invalido..</strong>    
+            </div>
+            
+            <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeError()">X</button>
+        </div>    
+    </div>
+</div>
+
+<!--Caso de Busqueda exitosa-->
+<div *ngIf="exitoBusqueda" class="relative overflow-x-auto max-w-[1126px] mx-auto mt-3">
+    <h1 class="title-search color-copal mb-2 text-center">Información de Seguimiento</h1>
+    <p class="title"><strong>Codigo Seguimiento: </strong>{{reserva.reserva.codigoDeSeguimiento}}</p>
+    <p class="title"><strong>Responsable: </strong>{{reserva.reserva.responsable.nombreCompleto}}</p>
+    <p class="title"><strong>Email: </strong>{{reserva.reserva.responsable.mail}}</p>
+    <p class="title"><strong>Espacio Reservado: </strong>{{reserva.reserva.espacioFisico.nombre}}</p>
+    <p class="title"><strong>Descripcion Reserva: </strong>{{reserva.reserva.descripcion.trim()===''?'Ninguna.': reserva.reserva.descripcion}}</p>
+    <p class="title"><strong>Duracion: </strong>{{reserva.reserva.horaInicio.substring(0,5) + ' a ' + reserva.reserva.horaFin.substring(0,5)}}</p>
+    <table class="table mt-3">
+        <thead>
+            <tr class="custom-table">
+                <th scope="col" class="custom-row">FECHA</th>
+                <th scope="col">DETALLE TRACKING</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let estado of reserva.estados">
+                <td class="custom-row">{{personalizarFecha(estado.fechaCreacion.substring(0,10))}}</td>
+                <td>
+                    <p>{{mensajePorEstado(estado.estado.id)}}</p>
+                    <p *ngIf="estado.detalle"> <strong>Detalles</strong>: {{estado.detalle}}</p>
+                </td>
+            </tr>
+        </tbody>
+  </table>
+
+  <button class="btn btn-copal mt-3" (click)="resetearVista()">Volver</button>
+</div>

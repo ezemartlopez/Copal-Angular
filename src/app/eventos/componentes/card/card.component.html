@@ -1,0 +1,35 @@
+<div *ngIf="infoEvento" class="container-card" [ngClass]="{'edit-success': exito,'edit-error':falla}">
+    <img [src]="infoEvento.flyer.urlPublica" alt="imagen_evento" class="image-evento">
+    <div class="container-description-event">
+        <p class="text-tittle">{{infoEvento.nombre}}</p>
+        <p class="text-center">{{infoEvento.fechaHoraInicio}}.</p>
+        <p class="text-center" *ngIf="infoEvento.tipoDeEvento !== 'VIRTUAL'" >{{infoEvento.ubicacion}}.</p>
+        <p class="text-center" *ngIf="infoEvento.tipoDeEvento === 'VIRTUAL'">Encuentro virtual: {{infoEvento.urlEncuentro}}</p>
+        <p class="text-resalt">{{infoEvento.departamento}}</p>
+    </div>
+    <div class="container-state">
+        <div class="w3-dropdown-click">
+            <div *ngIf="!seCambioEstado()" class="container-zone" [ngClass]="{'comenzado': infoEvento.estado==='COMENZADO', 'sin-comenzar': infoEvento.estado==='SIN COMENZAR', 'finalizado': infoEvento.estado==='TERMINADO', 'suspendido':infoEvento.estado==='SUSPENDIDO','cancelado':infoEvento.estado==='CANCELADO'}">
+                <span class="state-event" (click)="editarMiEstado()">{{infoEvento.estado}}</span>
+                <!--<i *ngIf="seCambioEstado()" class="material-icons custom-icon">save</i>  -->  
+            </div>
+            
+            <div *ngIf="nuevoEstado && seCambioEstado()" class="container-zone" [ngClass]="{'comenzado': nuevoEstado==='COMENZADO', 'sin-comenzar': nuevoEstado==='SIN COMENZAR', 'finalizado': nuevoEstado==='TERMINADO', 'suspendido':nuevoEstado==='SUSPENDIDO','cancelado':nuevoEstado==='CANCELADO'}">
+                <span class="state-event" (click)="editarMiEstado()">{{nuevoEstado}}</span>
+                <i class="material-icons custom-icon" (click)="editarEstadoEvento()">save</i>    
+            </div>
+            <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border w3-show" [ngClass]="{'w3-show':modificar}">
+              <a *ngFor="let estado of estados" class="w3-bar-item w3-button text-center" style="width: 300px;" (click)="modificarEstado(estado.nombre, estado.id)">{{estado.nombre}}</a>
+            </div>
+          </div>
+    </div>
+    
+    <div class="container-actions">
+        <div class="container-options">
+            <a [href]="infoEvento.urlInvitacion" title="Formulario de registro"><img src="assets/logos/link.png" alt="logo_link" class="icon-option" type="button" ></a>
+            <img src="assets/logos/view.png" alt="logo_view" class="icon-option" type="button" (click)="ver()">
+            <img src="assets/logos/edit.png" alt="logo_edit" class="icon-option" type="button" (click)="editar()">
+        </div>
+    </div>
+    
+</div>

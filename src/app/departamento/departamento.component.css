@@ -1,0 +1,42 @@
+*:not(.material-icons){
+    font-family: "Montserrat";
+}
+
+.departmentocss{
+    background-color: red;
+}
+.departmentoblue{
+    background-color: blue;
+    color: aliceblue;
+}
+.prueba{
+    padding: 0px;
+    padding-left: 0;
+}
+
+.btn-copal{
+    background-color:  #67b4c0;
+    color: white;
+    margin-right: 10px;
+}
+.btn-copal:hover{
+    background-color: white;
+    color: #67b4c0;
+    border: 1px solid  #67b4c0;
+}
+.header-title-page{
+    background-color: #67B4C0;
+    color: #283549;
+    font-size: 23px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+.container-box{
+    width: 100%;
+}
+.custom-buttons{
+    display: flex;
+    justify-content: flex-end;
+    
+}

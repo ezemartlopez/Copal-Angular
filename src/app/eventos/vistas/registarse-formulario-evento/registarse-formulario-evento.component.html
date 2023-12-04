@@ -1,0 +1,122 @@
+<div  class="relative max-w-[1126px] mx-auto container-global mt-3">
+    <img src="assets/logos/copal.png" alt="">
+        <div class="container-box">
+        <h1 class="header-title-page">
+          Reservacion de Espacio
+        </h1>
+    </div>
+    <div class="box3"  *ngIf="!isLoadding && eventoAsociado!==null">
+        <!-- <div class="box3-children">  
+            <img class="img-box3" [src]="eventoCompleto.flyer.urlPublica" alt="Flyer del evento"/>
+        </div> -->
+        <div class="infoEvento"*ngIf="isVisible" >
+            <p class="font-Monserrat">Evento: <strong>{{eventoAsociado.nombre}}</strong></p>
+            <p class="font-Monserrat">Inicio: {{eventoAsociado.fechaHoraInicio}}</p>
+            <p class="font-Monserrat">Descripcion: {{eventoCompleto.descripcion}}</p>
+        </div>
+        <div class="box3-children1" *ngIf="isVisible">
+            <div class="fila">
+                <p>*</p>
+                <label>Campos obligatorios</label>              
+            </div>
+            <div class="fila1">
+                <div class="fila1-1">
+                    <div class="fila1-1-1">
+                        <div class="fila-label">
+                            <p id="validacion"  [style.color]="esCampoInvalido('input') ? 'red' : 'transparent'"  >*</p>
+                            <label>Nombre</label> 
+                        </div>
+                        <div class="fila-label">
+                            <p id="validacion" [style.color]="esCampoInvalido('input1') ? 'red' : 'transparent'"  >*</p>
+                            <label>Mail</label>
+                        </div>
+                        <div class="fila-label">
+                            <p id="validacion" [style.color]="esCampoInvalido('input2') ? 'red' : 'transparent'"  >*</p>
+                            <label>Quien lo invito?</label> 
+                        </div>
+                    </div>
+                    <div class="fila1-1-2" >
+                        <div class="fila-input">
+                            <input id="input" [(ngModel)]="formularioRegistro.nombre"/>
+                        </div>
+                        <div class="fila-input" id="fila-input-email">
+                            <input
+                                
+                                id="input1"
+                                name="email"
+                                [(ngModel)]="valorEmail"
+                                #emailInput="ngModel"
+                                required
+                            />
+                            <div *ngIf="!valorEmail && emailInput.touched" id="email-validation">
+                                    El campo de correo electrónico es obligatorio.
+                            </div>
+                            <div *ngIf="valorEmail && !isValidEmail(valorEmail) && emailInput.touched" id="email-validation">
+                                    Por favor, introduce un correo electrónico válido.
+                            </div>
+                        </div>
+                        <div class="fila-input">
+                            <select id="input2" name="user" [(ngModel)]="formularioRegistro.invitadoPor">
+                                <option *ngFor="let usuario of usuariosObtenidos; let i=index" [ngValue]="usuario.id" class="custom-option">{{usuario.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="fila1-2">
+                    <div class="fila1-2-1">
+                        <div class="fila-label">
+                            <p id="validacion" [style.color]="esCampoInvalido('input3') ? 'red' : 'transparent'" >*</p>
+                            <label>Apellido</label> 
+                        </div>
+                        <div class="fila-label">
+                            <p id="validacion" class="punto" [style.color]="esCampoInvalido('input4') ? 'red' : 'transparent'" >*</p>
+                            <label>Empresa/Cámara que pertenece</label> 
+                        </div>
+                        <div class="fila-label">
+                        </div>
+                    </div>
+                    <div class="fila1-2-2">
+                        <div class="fila-input">
+                            <input id="input3" [(ngModel)]="formularioRegistro.apellido"/>
+                        </div>
+                        <div class="fila-input">
+                            <select id="input4" name="user" [(ngModel)]="formularioRegistro.organizacion">
+                                <option *ngFor="let usuario of listaSocios; let i=index" [ngValue]="usuario" class="custom-option">{{usuario.nombre}}</option>
+                                <option value="otra">Otra</option>
+                            </select>
+                        </div>
+                        <div *ngIf="formularioRegistro.organizacion === 'otra'" class="fila-input">
+                            
+                            <input type="text" id="otraOrganizacion" name="otraOrganizacion" [(ngModel)]="otraOrganizacion">
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <div class="fila2">
+                <div class="fila2-1">   
+                    <p>Al elegir inscripción,&nbsp;</p> <a class="condicion" href="/"> Acepto las condiciones de servicio copal</a>
+                </div>
+            </div>
+            <div class="fila3">
+                <div class="fila3-1">
+                    <button class="btnCancelar" (click)="regresar()">CANCELAR</button>
+                    <button id="miBoton"class=" btnInscripcion" (click)="enviarDatos()"  >INSCRIPCIÓN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="exito" class="alert alert-success" role="alert">
+        Se registro correctamente
+    </div>
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+        Ocurrio un error al registrarse!
+    </div>
+</div>
+<div *ngIf="eventoAsociado === null" class="relative max-w-[1126px] mx-auto noFound">
+    <br>
+    <h1 class="texto">No existe un evento asociado..</h1>
+</div>
+<div *ngIf="isLoadding" class="relative max-w-[1126px] mx-auto">
+    <br>
+    <app-loading></app-loading>
+</div>

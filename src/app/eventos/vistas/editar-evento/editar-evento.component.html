@@ -1,0 +1,256 @@
+<div class="relative overflow-x-auto max-w-[1126px] mx-auto">
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb ml-2 mb-0">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active"><a href="/eventos">Gestion de Eventos</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Editar Evento</li>
+        </ol>
+    </nav>
+    <div class="container-box">
+        <h1 class="header-title-page">
+          Gestion de Eventos
+        </h1>
+    </div>
+</div>
+<div *ngIf="isLoadding" class="relative overflow-x-auto max-w-[1126px] mx-auto">
+    <br>
+    <app-loading></app-loading>
+</div>
+<!--Zona del formulario-->
+<div *ngIf="infoCargada" class="relative overflow-x-auto max-w-[1126px] mx-auto">
+    <div class="back-container mb-3">
+        <a href="/eventos" class="btn btn-copal"> Regresar</a>    
+    </div>
+
+    <div class="container-box">
+        <h1 class="header-title">
+          Editar Evento
+        </h1>
+    </div>
+
+    <!--FORMULARIO DE CREAR EVENTO-->
+    <div class="container-formulario">
+        <br>
+        <div class="detalles-evento">
+            <!--primera linea NOMBRES-->
+            <div class="row-input">
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">* Nombre del Evento:</label>
+                    <input type="text" class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="nombre" required>
+                </div>
+                <div class="row-middle">
+                    <label class="text-nowrap size-text-23 font-Monserrat">* Organizador:</label>
+                    <select class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="departamento">
+                        <option *ngFor="let dep of opcionesDepartamentos; let i = index" [value]="dep.id" class="option-select size-text-23 font-Monserrat" [selected]="i===0">{{dep.nombre}}</option>
+                        
+                    </select>
+                </div>
+            </div>
+            <div *ngIf="errores.nombre !== '' || errores.departamento!==''" class="row-input">
+                <p class="row-middle text-danger">{{errores.nombre}}</p>
+                <p class="row-middle text-danger">{{errores.departamento}}</p>
+            </div>
+            <!--segunda linea FECHAS-->
+            <div class="row-input">
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">* Fecha de inicio:</label>
+                    <input type="date" class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="fechaInicio">
+                </div>
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">* Fecha finalización:</label>
+                    <input type="date"  class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="fechaFin">
+                </div>
+            </div>
+            <div *ngIf="errores.fechaInicio!== '' || errores.fechaFin!==''" class="row-input">
+                <p class="row-middle text-danger">{{errores.fechaInicio}}</p>
+                <p class="row-middle text-danger">{{errores.fechaFin}}</p>
+            </div>
+            <!--tercera linea HORARIOS-->
+            <div class="row-input">
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">* Hora Inicio:</label>
+                    <select class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="horaInicio">
+                        <option *ngFor="let tiempo of generarTiempos(); let i = index" [value]="tiempo">{{ i === 0 ? tiempo : tiempo.substring(0,5) }}</option>
+                    </select>
+                </div>
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">* Hora finalización:</label>
+                    <select class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="horaFin">
+                        <option *ngFor="let tiempo of generarTiempos(); let i = index" [value]="tiempo">{{ i === 0 ? tiempo : tiempo.substring(0,5) }}</option>
+                    </select>
+                </div>
+            </div>
+            <div *ngIf="errores.horaInicio!== '' || errores.horaFin!==''" class="row-input">
+                <p class="row-middle text-danger">{{errores.horaInicio}}</p>
+                <p class="row-middle text-danger">{{errores.horaFin}}</p>
+            </div>
+            <!--CARGA DE LA IMAGEN-->
+            <div class="container-imagen">
+                <label  class="text-nowrap size-text-23 font-Monserrat">Imagen del Evento</label>
+                <!--<button class="btn btn-copal"> CARGAR IMAGEN DEL EVENTO </button>-->
+                <input class="mt-3" type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/jpg" title="Seleccione imagen" />
+            </div>
+            <!--CARGA DE ESTADO-->
+            <div class="row-input">
+                <div class="row-middle">
+                    <label class="text-nowrap size-text-23 font-Monserrat">* Estado:</label>
+                    <select class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="estadoEvento">
+                        <option *ngFor="let est of opcionesEstados" [value]="est.id" class="option-select size-text-23 font-Monserrat">{{est.nombre}}</option>
+                        
+                    </select>
+                </div>
+            </div>
+            <!--Carga de la descripcion-->
+            <div class="container-descripcion">
+                <label class="text-nowrap size-text-23 font-Monserrat">* Descripcion:</label>
+                <textarea rows="3" class="size-text-23 font-Monserrat descripcion-copal" placeholder="Escribe algo aquí..." [(ngModel)]="descripcion">
+                </textarea>
+            </div>
+            <div *ngIf="errores.descripcion!== ''" class="row-input">
+                <p class="row-middle text-danger">{{errores.descripcion}}</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!--DONDE SE REALIZARA EL EVENTO-->
+    <div class="container-box">
+        <h1 class="header-title">
+          Lugar del Evento
+        </h1>
+    </div>
+    <br>
+    <!--Modalidad del evento-->
+    <div class="container-ubicacion">
+        <div class="row-input">
+            <div class="row-middle">
+                <label class="text-nowrap size-text-23 font-Monserrat">* Modalidad:</label>
+                <select class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="tipoDeEvento">
+                    <option *ngFor="let tipo of opcionesTipoEvento" [value]="tipo" class="option-select size-text-23 font-Monserrat" >{{tipo}}</option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="errores.tipoEvento" class="row-input">
+            <p class="row-middle text-danger">{{errores.tipoEvento}}</p>
+        </div>
+        <!--link reunion-->
+        <div *ngIf="tipoDeEvento === 'VIRTUAL'|| tipoDeEvento === 'HIBRIDO' " class="row-input">
+            <div class="row-middle">
+                <label  class="text-nowrap size-text-23 font-Monserrat">* Link Reunion:</label>
+                <input type="url" class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="urlEncuentro">
+            </div>
+        </div>
+        <div *ngIf="errores.urlEncuentro !== ''" class="row-input">
+            <p class="row-middle text-danger">{{errores.urlEncuentro}}</p>
+        </div>
+        <!--direccion del evento-->
+        <div *ngIf="tipoDeEvento === 'PRESENCIAL'|| tipoDeEvento === 'HIBRIDO' " class="container-direccion">
+            <div class="row-input">
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">* Provincia:</label>
+                    <select class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="ubicacion.provincia" (ngModelChange)="provinciaCambiada(ubicacion.provincia)">
+                        <option *ngFor="let prov of opcionesProvincias; let i = index" [value]="prov.id" class="option-select size-text-23 font-Monserrat">{{prov.nombre}}</option>
+                    </select>
+                </div>
+                <div class="row-middle">
+                    <label class="text-nowrap size-text-23 font-Monserrat">* Localidad:</label>
+                    <select class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="ubicacion.localidad" [disabled]="localidadesDesabilitadas || ubicacion.provincia === '0'">
+                        <option *ngIf="opcionesLocalidades.length===1" [value]="0">Primero Seleccione una Provincia</option>
+                        <option *ngFor="let loc of opcionesLocalidades" [value]="loc.id" class="option-select size-text-23 font-Monserrat">{{loc.nombre}}</option>
+                    </select>
+                </div>
+            </div> 
+            <div *ngIf="errores.ubicacionProvincia!== '' || errores.ubicacionLocalidad!==''" class="row-input">
+                <p class="row-middle text-danger">{{errores.ubicacionProvincia}}</p>
+                <p class="row-middle text-danger">{{errores.ubicacionLocalidad}}</p>
+            </div>
+
+            <div class="row-input">
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">* Calle:</label>
+                    <input type="text" class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="ubicacion.calle">
+                </div>
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">* Altura:</label>
+                    <input type="number" class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="ubicacion.altura">
+                </div>
+            </div>  
+            <div *ngIf="errores.ubicacionCalle!== '' || errores.ubicacionAltura!==''" class="row-input">
+                <p class="row-middle text-danger">{{errores.ubicacionCalle}}</p>
+                <p class="row-middle text-danger">{{errores.ubicacionAltura}}</p>
+            </div>
+            <div class="row-input">
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">Nro. Piso:</label>
+                    <input type="number" class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="ubicacion.piso">
+                </div>
+                <div class="row-middle">
+                    <label  class="text-nowrap size-text-23 font-Monserrat">Codigo Postal:</label>
+                    <input type="number" class=" size-text-23 space-total copal-custom font-Monserrat" [(ngModel)]="ubicacion.codigoPostal">
+                </div>
+            </div>
+        </div>
+
+
+
+        
+    </div>
+    <br>
+    <br>
+    <div class="container-send">
+        <div class="container-actions">
+            <button class="btn btn-copal custom-send" (click)="redireccionar('/eventos')" >CANCELAR</button>
+            <button class="btn btn-copal-2 custom-send" type="submit" (click)="enviarFormulario()">EDITAR EVENTO</button>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<!-- SECCION DEL MODAL -->
+<!-- Button trigger modal--> 
+
+
+    <div *ngIf="showModal" class="modal fade centered-modal" tabindex="-1" aria-labelledby="exampleModalLabel" [ngClass]="{ 'show visibleModal': showModal }">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-bold size-text-23 font-Monserrat" id="exampleModalLabel">Edicion Evento</h1>
+            <button type="button" class="btn-close-copal" (click)="ocultarModal()" aria-label="Close">X</button>
+          </div>
+          <div class="modal-body center-info">
+            <div class="center-body">
+                <div class="centered">
+                   <img src="/assets/logos/exito.png" alt="logo_exito" class="icono_exito">  
+                </div>
+                
+                <p>Se edito el evento con exito.</p>          
+                <button class="btn btn-copal">Ver Evento</button>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div *ngIf="showError" class="modal fade centered-modal" tabindex="-1" aria-labelledby="exampleModalLabel" [ngClass]="{ 'show visibleModal': showError }">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-bold size-text-23 font-Monserrat" id="exampleModalLabel">Edicion Evento</h1>
+                <button type="button" class="btn-close-copal" (click)="ocultarErrorModal()" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body center-info">
+                <div class="center-body">
+                    <div class="centered">
+                        <img src="/assets/logos/alert-triangle.png" alt="logo_exito" class="icono_exito">  
+                     </div>
+                     
+                     <p>Ocurrio un error al editar el evento.</p>          
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>    
